@@ -46,3 +46,6 @@ ActionCable、WebSocket
 Google Cloud natural Language
 チャットボット
 ChatGPTのAPI
+
+画面遷移図
+Figma：https://www.figma.com/design/BCrnENDFp3uFbXed6p78rP/Untitled?node-id=0-1&p=f&t=P4jpi1FsK0oWh11s-0
