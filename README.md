@@ -49,3 +49,6 @@ ChatGPTのAPI
 
 画面遷移図
 Figma：https://www.figma.com/design/BCrnENDFp3uFbXed6p78rP/Untitled?node-id=0-1&p=f&t=P4jpi1FsK0oWh11s-0
+
+ER図
+[![Image from Gyazo](https://i.gyazo.com/50c0a7f55b3c7b8cd7d0d8078a6d1115.png)](https://gyazo.com/50c0a7f55b3c7b8cd7d0d8078a6d1115)
