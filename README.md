@@ -52,4 +52,4 @@ ChatGPTのAPI
 Figma：https://www.figma.com/design/BCrnENDFp3uFbXed6p78rP/Untitled?node-id=0-1&p=f&t=P4jpi1FsK0oWh11s-0
 
 ER図
-https://i.gyazo.com/db030b194dd2f432cfec47d551237c79.png
+https://i.gyazo.com/6792ba0d57aa8bce0ac4e0c776934ec1.png
