@@ -27,6 +27,7 @@ MVP時
 ・ログイン機能
 　チャットルーム1
 ・チャット投稿機能
+・チャット削除機能
 　プロフィール詳細画面
 ・プロフィール編集機能
 ・プロフィール一覧機能
@@ -49,3 +50,6 @@ ChatGPTのAPI
 
 画面遷移図
 Figma：https://www.figma.com/design/BCrnENDFp3uFbXed6p78rP/Untitled?node-id=0-1&p=f&t=P4jpi1FsK0oWh11s-0
+
+ER図
+https://i.gyazo.com/6792ba0d57aa8bce0ac4e0c776934ec1.png
