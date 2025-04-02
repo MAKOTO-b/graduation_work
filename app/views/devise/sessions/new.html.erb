@@ -1,21 +1,20 @@
-<div class="sign_in_page" style="margin: 100px;">
+<div class="login-container text-center" style="margin-top: 200px;">
   <%= form_with scope: resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-group w-25 p-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+    <div class="form-group" style="margin: 20px;">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "", placeholder: "メールアドレス" %>
     </div>
 
-    <div class="form-group w-25 p-3">
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
+    <div class="form-group" style="margin: 20px;">
+      <%= f.password_field :password, autocomplete: "new-password", class: "", placeholder: "パスワード" %>
     </div>
-  </div>
 
-    <div class="actions" style="margin: 100px;">
-      <%= f.submit "ログイン" %>
+    <div class="actions" style="margin: 20px;">
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
-  <% end %>
-  <div>
-    <%= render "devise/shared/links" %>
-  </div>
+    <% end %>
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
 </div>
