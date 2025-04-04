@@ -37,7 +37,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'devise'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 3.1'
 gem "mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
