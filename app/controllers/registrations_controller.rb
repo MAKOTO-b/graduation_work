@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    chat_rooms_path
+    home_index_path
   end
 
 end

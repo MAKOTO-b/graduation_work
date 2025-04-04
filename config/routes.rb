@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   }
   root 'top#index'
 
-  resources :chat_rooms, only: [:create, :show, :index]
+  resources :home, only: [:index]
+  resources :chat_rooms, only: [:create, :show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

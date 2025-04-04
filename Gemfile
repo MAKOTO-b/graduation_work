@@ -42,6 +42,8 @@ gem "mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 gem 'rails-i18n', '~> 7.0.0'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
