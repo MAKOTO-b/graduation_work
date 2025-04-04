@@ -39,7 +39,7 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sass-rails', '>= 3.2'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'devise-i18n'
