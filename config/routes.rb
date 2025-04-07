@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     registrations: 'registrations',
     sessions: 'sessions'
   }
+
+  mount ActionCable.server => '/cable'
   root 'top#index'
 
   resources :home, only: [:index]
