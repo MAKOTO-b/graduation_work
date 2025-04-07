@@ -3,8 +3,8 @@
     <nav class="navbar navbar-light">
       <a class="navbar-brand text-white">Spill Out</a>
       <div class="navbar__sign-in-up-btn">
-        <%= link_to "ログイン", "#", class: "btn my-2 my-sm-0 bg-light text-top-color" %>
-        <%= link_to "アカウント作成", "#", class: "btn my-2 my-sm-0 bg-light text-top-color" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn my-2 my-sm-0 bg-light text-top-color" %>
+        <%= link_to "アカウント作成", new_user_registration_path, class: "btn my-2 my-sm-0 bg-light text-top-color" %>
       </div>
     </nav>
   </div>
@@ -12,6 +12,7 @@
   <div class="top-title">
     <h1 class="text-white text-center">
       サービス概要(予定)
+      →使用方法など
     </h1>
   </div>
 </div>
