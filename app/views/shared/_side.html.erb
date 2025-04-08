@@ -1,0 +1,18 @@
+<div class="navigation">
+  <ul>
+    <li class="list">
+        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+        <%= link_to 'ホーム', home_index_path, class: "title"%>
+    </li>
+    <li class="list">
+        <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+        <%= link_to 'チャットルーム', chat_rooms_path, data: { turbo_method: :post }, class: "title"%>
+    </li>
+    <li class="list">
+        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "title" %>
+    </li>
+  </ul>
+</div>
+<script type= "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script>
+<script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
