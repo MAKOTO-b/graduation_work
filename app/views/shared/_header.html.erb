@@ -1,0 +1,18 @@
+<header>
+  <ul class="header">
+    <li class="logo">Spill Out</li>
+    <ul class="menus">
+      <li class="list">
+          <%= link_to 'ホーム', home_index_path, class: "title"%>
+      </li>
+      <li class="list">
+          <%= link_to 'チャットルーム', chat_rooms_path, data: { turbo_method: :post }, class: "title"%>
+      </li>
+      <li class="list">
+          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "title" %>
+      </li>
+    </ul>
+  </ul>
+</header>
+<script type= "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script>
+<script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
