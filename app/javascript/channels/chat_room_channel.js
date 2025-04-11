@@ -24,8 +24,6 @@ const appChatRoom = consumer.subscriptions.create("ChatRoomChannel", {
   }
 });
 
-//chat_roomのみ有効
-if(/chat_rooms/.test(location.pathname)) {
 //jqueryの機能
 // keypress:キーボードのキーが押されたときのイベント
 // keydown:キーボードのキーが押し込まれたときのイベント
@@ -38,5 +36,4 @@ if(/chat_rooms/.test(location.pathname)) {
       e.preventDefault();
     }
   })
-}
 
