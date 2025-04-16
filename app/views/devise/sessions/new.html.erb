@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-body">
-      <%= form_with scope: resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="form-group pb-2">
@@ -16,9 +16,9 @@
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
         </div>
 
-        <div class="sign-in__submit-btn text-center">
-          <%= f.submit "ログイン", class: "btn btn-block text-white" %>
-        </div>
+        <%= button_tag(type: 'submit', class: "btn btn-primary", style: "width: 325px;") do %>
+          ログイン
+        <% end %>
       <% end %>
 
       <div class="mt-3">
