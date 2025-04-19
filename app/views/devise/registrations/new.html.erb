@@ -24,9 +24,9 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード確認" %>
         </div>
 
-        <div class="sign-up__submit-btn text-center">
-          <%= f.submit "はじめる", class: "btn btn-block text-white" %>
-        </div>
+        <%= button_tag(type: 'submit', class: "btn btn-primary", style: "width: 325px;") do %>
+          はじめる
+        <% end %>
       <% end %>
 
       <div class="mt-3">
