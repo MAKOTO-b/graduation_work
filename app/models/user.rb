@@ -9,4 +9,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+
+  def update_without_current_password(params, *options)
+
+    #パスワードとパスワードの確認のフォームが空のときにtrueを返す
+    if params[:password].blank? && params[:password_confirmation].blank?
+      #passwordとpassword_confirmationのパラメータを削除
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update(params, *options)
+    clean_up_passwords
+    result
+  end
+
 end

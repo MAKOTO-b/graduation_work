@@ -1,0 +1,43 @@
+.user-edit-page {
+    max-width: 414px;
+    margin: 0 auto;
+    .profile {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 24px 0 12px;
+      &-default-img {
+        height: 128px;
+        width: 128px;
+        border-radius: 50%;
+        background-size: contain;
+        background-image: url("./users/profile_default_img_128.png");
+        &>input {
+          display: none;
+        }
+      }
+      &-img {
+        height: 128px;
+        width: 128px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      &-name {
+        font-size: 24px;
+      }
+      &-img-upload {
+        margin-top: 12px;
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #FD3378;
+        border-radius: 8px;
+        cursor: pointer;
+        &>input {
+          display: none;
+        }
+      }
+    }
+  }
