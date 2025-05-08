@@ -19,7 +19,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'pry-rails'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 3.1'
 
 
 group :development, :test do
