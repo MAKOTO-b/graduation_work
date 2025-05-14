@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  mount_uploader :profile_image, ProfileImageUploader
+  
   def update_without_current_password(params, *options)
 
     #パスワードとパスワードの確認のフォームが空のときにtrueを返す

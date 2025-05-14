@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :gender])
     #記載したカラムを編集可能
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :self_introduction, :profile_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name,:profile_image])
   end
 end
