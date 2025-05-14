@@ -19,8 +19,8 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'pry-rails'
-gem 'carrierwave', '~> 2.0'
-
+gem 'carrierwave', '~> 3.1.2'
+gem "mini_magick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
