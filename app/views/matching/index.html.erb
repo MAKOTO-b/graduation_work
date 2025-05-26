@@ -1,0 +1,7 @@
+<% unless @match_users.empty? %>
+  <ul>
+    <% @match_users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+<% end %>
