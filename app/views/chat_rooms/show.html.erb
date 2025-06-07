@@ -1,11 +1,13 @@
-<div class="service min-vh-100">
-<%= render partial: "shared/sidebar" %>
-<div class="chat-room-show-page">
+<div class="service bg-secondary-subtle">
+  <%= render partial: "shared/sidebar" %>
+  <div class="chat-room-show-page">
     <div id='chat-messages'>
       <%= render @chat_messages %>
     </div>
-    <form class="chat-room__message-form">
-      <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
+    <form class="chat-room__message-form fixed-bottom" style="padding-left: 500px;">
+      <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea w-75 m-3"></textarea>
     </form>
+  </div>
 </div>
-</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
