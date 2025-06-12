@@ -3,7 +3,22 @@ class MatchingController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @match_users = current_user
-    @user = User.find(current_user.id)
+    #テストしたいためここで他ユーザーのマッチングステータスを意図的に更新
+    #あとで
+
+    #マッチングステータス更新
+    #→退出時にマッチングステータスを削除
+    
+
+    #マッチングステータスが空白ではない他のユーザーレコードをランダムで取得
+    
+    #取得できない場合、
+     #自身のマッチングステータスを空白へ
+     #メッセージを表示してホームに戻る
+    
+    #取得できた場合、
+      #マッチングステータスが空白ではないかつ、
+      #自分以外のレコードを全件取得
+
   end
 end
