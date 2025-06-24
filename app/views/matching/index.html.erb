@@ -8,12 +8,15 @@
     <div class="matching__list">
       <% unless @match_users.empty? %>
         <% @match_users.each do |user| %>
+
+         <%= link_to rmd_chat_room_path(user.id), method: :post do%>
+
          <div class="matching__person">
 
            <% if user.profile_image.url.nil? %>
-             <div class="matching__person-default-img"></div>
+             <div class="matching__person-default-img border border-secondary"></div>
            <% else %>
-             <%= image_tag user.profile_image.url, class: "matching__person-img" %>
+             <%= image_tag user.profile_image.url, class: "matching__person-img border border-secondary" %>
            <% end %>
 
            <div class="matching__person-name">
@@ -21,6 +24,7 @@
            </div>
 
          </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>

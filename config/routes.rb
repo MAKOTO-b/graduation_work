@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
   resources :chat_rooms, only: [:create, :show]
-
   resources :matching, only: [:index]
+  resources :rmd_chat_rooms, only: [:create, :show]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
