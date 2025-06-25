@@ -8,8 +8,8 @@
     <div class="matching__list">
       <% unless @match_users.empty? %>
         <% @match_users.each do |user| %>
-
-         <%= link_to rmd_chat_room_path(user.id), method: :post do%>
+        
+         <%= link_to rmd_chat_rooms_path, data: { turbo_method: :post } do%>
 
          <div class="matching__person">
 

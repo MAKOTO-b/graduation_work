@@ -1,0 +1,2 @@
+class RmdChatMessage < ApplicationRecord
+end
