@@ -9,7 +9,7 @@
       <% unless @match_users.empty? %>
         <% @match_users.each do |user| %>
         
-         <%= link_to rmd_chat_rooms_path, data: { turbo_method: :post } do%>
+         <%= link_to rmd_chat_rooms_path(params: { user_id: user.id }), data: { turbo_method: :post } do%>
 
          <div class="matching__person">
 

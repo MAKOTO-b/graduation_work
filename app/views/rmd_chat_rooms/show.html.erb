@@ -1,4 +1,11 @@
 <div class="service min-vh-100 bg-secondary-subtle">
-<%= render partial: "shared/sidebar" %>
-<p>チャットルームページ</p>
+  <%= render partial: "shared/sidebar" %>
+
+  <div id='rmd-chat-messages'>
+    <%= render @rmd_chat_messages %>
+  </div>
+
+  <form>
+  <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @rmd_chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
+  </form>
 </div>
