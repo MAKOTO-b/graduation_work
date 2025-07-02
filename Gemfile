@@ -13,7 +13,7 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
-#追加
+# 追加
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
