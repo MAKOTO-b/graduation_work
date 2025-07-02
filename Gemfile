@@ -14,12 +14,12 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # 追加
-gem 'devise'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
-gem 'rails-i18n'
-gem 'pry-rails'
-gem 'carrierwave', '~> 3.1.2'
+gem "devise"
+gem "devise-i18n"
+gem "devise-i18n-views"
+gem "rails-i18n"
+gem "pry-rails"
+gem "carrierwave", "~> 3.1.2"
 gem "mini_magick"
 
 group :development, :test do
