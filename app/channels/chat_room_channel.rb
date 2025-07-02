@@ -1,6 +1,6 @@
 class ChatRoomChannel < ApplicationCable::Channel
   def subscribed
-    #chat_room_channel.rbとchat_room_channel.jsでデータ送受信できるようにする
+    # chat_room_channel.rbとchat_room_channel.jsでデータ送受信できるようにする
     stream_from "chat_room_channel"
   end
 
@@ -9,7 +9,7 @@ class ChatRoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    #送られてきたデータを元にレコードを作成
+    # 送られてきたデータを元にレコードを作成
     ChatMessage.create!(
       content: data['chat_message'],
       user_id: current_user.id,
