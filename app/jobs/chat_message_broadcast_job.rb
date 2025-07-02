@@ -3,7 +3,6 @@ class ChatMessageBroadcastJob < ApplicationJob
 
   def perform(chat_message)
     #receivedへデータを渡す
-    #本番環境で動いていない
     ActionCable.server.broadcast 'chat_room_channel', { chat_message: render_chat_message(chat_message) }
   end
 

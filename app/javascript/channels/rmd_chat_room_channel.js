@@ -12,13 +12,14 @@ const appRmdChatRoom = consumer.subscriptions.create("RmdChatRoomChannel", {
 
   received: function(data) {
     const RmdChatMessages = document.getElementById('rmd-chat-messages');
-    //document.getElementById('chat-messages');でid="chat-messages"の要素のオブジェクトを返す
-    //insertAdjacentHTML で第2引数のdata['chat_message']を挿入する。挿入位置は、
+    //document.getElementById('chat-messages');でid="rmd-chat-messages"の要素のオブジェクトを返す
+    //insertAdjacentHTML で第2引数のdata['rmd_chat_message']を挿入する。挿入位置は、
     // 'beforeend'なので、element 内部の、最後の子要素の後に挿入する。
     RmdChatMessages.insertAdjacentHTML('beforeend', data['rmd_chat_message']);
+    window.scrollBy(0, 10000);
   },
 
-  //chat_room_channel.rbのspeakアクションへデータ送信
+  //rmd_chat_room_channel.rbのspeakアクションへデータ送信
   speak: function(rmd_chat_message, rmd_chat_room_id) {
     return this.perform('speak', { rmd_chat_message: rmd_chat_message, rmd_chat_room_id: rmd_chat_room_id });
   }

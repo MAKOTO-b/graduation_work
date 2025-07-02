@@ -1,6 +1,6 @@
 class RmdChatRoomChannel < ApplicationCable::Channel
   def subscribed
-    #chat_room_channel.rbとchat_room_channel.jsでデータ送受信できるようにする
+    #rmd_chat_room_channel.rbとrmd_chat_room_channel.jsでデータ送受信できるようにする
     stream_from "rmd_chat_room_channel"
   end
 

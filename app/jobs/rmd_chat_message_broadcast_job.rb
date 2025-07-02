@@ -1,7 +1,7 @@
 class RmdChatMessageBroadcastJob < ApplicationJob
   queue_as :default
 
-  def perform(chat_message)
+  def perform(rmd_chat_message)
     #receivedへデータを渡す
     ActionCable.server.broadcast 'rmd_chat_room_channel', { rmd_chat_message: render_rmd_chat_message(rmd_chat_message) }
   end
