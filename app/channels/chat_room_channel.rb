@@ -11,9 +11,9 @@ class ChatRoomChannel < ApplicationCable::Channel
   def speak(data)
     # 送られてきたデータを元にレコードを作成
     ChatMessage.create!(
-      content: data['chat_message'],
+      content: data["chat_message"],
       user_id: current_user.id,
-      chat_room_id: data['chat_room_id']
+      chat_room_id: data["chat_room_id"]
     )
   end
 end

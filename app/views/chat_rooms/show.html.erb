@@ -1,10 +1,10 @@
 <div class="service bg-secondary-subtle">
   <%= render partial: "shared/sidebar" %>
   <div class="chat-room-show-page">
-    <div id='chat-messages'>
+    <div id="chat-messages">
       <%= render @chat_messages %>
     </div>
-    <form class="chat-room__message-form fixed-bottom" style="padding-left: 500px;">
+    <form class="chat-room__message-form fixed-bottom text-center">
       <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea w-75 m-3"></textarea>
     </form>
   </div>
