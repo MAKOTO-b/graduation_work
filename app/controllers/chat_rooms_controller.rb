@@ -13,11 +13,11 @@ class ChatRoomsController < ApplicationController
 
     # 使用ユーザーのレコードが取得されない場合。
     if current_user_chat_rooms.blank?
-        # chat_roomsに新規レコード作成
-        chat_room = ChatRoom.create
-        # chat_room_usersに新規レコード作成
-        ChatRoomUser.create(chat_room: chat_room, user_id: current_user.id)
-      end
+      # chat_roomsに新規レコード作成
+      chat_room = ChatRoom.create
+      # chat_room_usersに新規レコード作成
+      ChatRoomUser.create(chat_room: chat_room, user_id: current_user.id)
+    end
 
     # show Actionへ遷移
     redirect_to action: :show, id: chat_room.id

@@ -20,7 +20,7 @@ class RmdChatRoomsController < ApplicationController
     end
     redirect_to action: :show, id: rmd_chat_room.id
   end
-  
+
   def show
     # 相手と自分がいるチャットルーム取得
     @rmd_chat_room = RmdChatRoom.find(params[:id])
