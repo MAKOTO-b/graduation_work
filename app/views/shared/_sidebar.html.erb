@@ -6,38 +6,38 @@
     <li>
       <div class="sidebar-li">
         <i class="fas fa-store"></i>
-        <%= link_to'ホーム', home_index_path, class: "sidebar-title"%>
+        <%= link_to"ホーム", home_index_path, class: "sidebar-title"%>
       </div>
     </li>
     <li>
       <div class="sidebar-li">
         <i class="fas fa-comment"></i>
-        <%= link_to 'チャットルーム', chat_rooms_path, data: { turbo_method: :post }, class: "sidebar-title"%>
+        <%= link_to "チャットルーム", chat_rooms_path, data: { turbo_method: :post }, class: "sidebar-title"%>
       </div>
     </li>
     <li>
       <div class="sidebar-li">
         <i class="fas fa-comments"></i>
-        <%= link_to'ランダムチャット', matching_index_path, class: "sidebar-title"%>
+        <%= link_to"ランダムチャット", matching_index_path, class: "sidebar-title"%>
       </div>
     </li>
     <li>
       <div class="sidebar-li">
         <i class="fas fa-user-cog"></i>
-        <%= link_to'チャットボット', home_index_path, class: "sidebar-title"%>
+        <%= link_to"チャットボット", home_index_path, class: "sidebar-title"%>
       </div>
     </li>
     <li>
     <li>
       <div class="sidebar-li">
         <i class="fas fa-user-circle"></i>
-        <%= link_to'プロフィール', edit_user_registration_path, class: "sidebar-title"%>
+        <%= link_to"プロフィール", edit_user_registration_path, class: "sidebar-title"%>
       </div>
     </li>
     <li>
       <div class="sidebar-li">
         <i class="fas fa-sign-out-alt"></i>
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "sidebar-title" %>
+        <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "sidebar-title" %>
       </div>
     </li>
   </ul>
