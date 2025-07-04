@@ -16,7 +16,6 @@ class User < ApplicationRecord
   mount_uploader :profile_image, ProfileImageUploader
 
   def update_without_current_password(params, *options)
-
     # パスワードとパスワードの確認のフォームが空のときにtrueを返す
     if params[:password].blank? && params[:password_confirmation].blank?
       # passwordとpassword_confirmationのパラメータを削除
