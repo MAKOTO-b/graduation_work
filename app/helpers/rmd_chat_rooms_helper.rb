@@ -1,0 +1,2 @@
+module RmdChatRoomsHelper
+end
