@@ -1,9 +1,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import "top";
-@import "header";
 @import "sidebar";
 @import "users/sign_up";
 @import "users/sign_in";
 @import "chat_rooms/show";
 @import "users/edit";
+@import "match";
+@import "matching";

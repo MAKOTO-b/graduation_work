@@ -1,0 +1,32 @@
+<div class="service bg-secondary-subtle">
+  <%= render partial: "shared/sidebar" %>
+
+  <div class="matching">
+    <p class="matching-title ml-3">メッセージ</p>
+    <p class="matching-num">マッチング中のお相手 <%= @match_users.size %>人</p>
+
+    <div class="matching__list">
+      <% unless @match_users.empty? %>
+        <% @match_users.each do |user| %>
+        
+         <%= link_to rmd_chat_rooms_path(params: { user_id: user.id }), data: { turbo_method: :post } do%>
+
+         <div class="matching__person">
+
+           <% if user.profile_image.url.nil? %>
+             <div class="matching__person-default-img border border-secondary"></div>
+           <% else %>
+             <%= image_tag user.profile_image.url, class: "matching__person-img border border-secondary" %>
+           <% end %>
+
+           <div class="matching__person-name">
+             <%= user.name %>
+           </div>
+
+         </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,4 @@
 .user-edit-page {
-    max-width: 414px;
-    margin: 0 auto;
     .profile {
       display: flex;
       flex-direction: column;
@@ -52,3 +50,9 @@
     border-radius: 50%;
     object-fit: cover;
   }
+
+.profile_form {
+  position:absolute;
+  padding-left: 150px;
+  width: 650px;
+}

@@ -13,13 +13,13 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
-#追加
-gem 'devise'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
-gem 'rails-i18n'
-gem 'pry-rails'
-gem 'carrierwave', '~> 3.1.2'
+# 追加
+gem "devise"
+gem "devise-i18n"
+gem "devise-i18n-views"
+gem "rails-i18n"
+gem "pry-rails"
+gem "carrierwave", "~> 3.1.2"
 gem "mini_magick"
 
 group :development, :test do
@@ -31,13 +31,17 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-  gem 'letter_opener'
-  gem 'letter_opener_web'
+  gem "letter_opener"
+  gem "letter_opener_web"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "ruby-lsp"
 end
 
 group :test do

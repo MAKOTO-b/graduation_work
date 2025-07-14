@@ -68,6 +68,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: DB migration
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+
       - name: Run tests
         env:
           RAILS_ENV: test

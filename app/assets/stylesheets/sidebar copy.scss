@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;400&display=swap');
+
+.sidebar {
+    box-sizing: border-box;
+    font-family: "M PLUS 1p", sans-serif;
+    position: fixed;
+    left: 0;
+    background-color: rgba(8, 8, 8, 0.816);
+    width: 250px;
+    height: 100%;
+}
+
+.sidebar header {
+    font-size: 25px;
+    color: white;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 70px;
+    background: rgb(46, 46, 46);
+    user-select: none;
+}
+
+.sidebar-ul {
+    padding-left: 0%;
+}
+
+.sidebar-li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid black;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+
+.sidebar-li:hover {
+    opacity: 0.4;
+}
+
+.sidebar-li i {
+    line-height: 65px;
+    color: white;
+    font-size: 20px;
+    margin-right: 16px;
+    padding-left: 10px;
+}
+
+.sidebar-title {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}

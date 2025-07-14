@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-
   protected
 
   def update_resource(resource, params)
@@ -13,5 +12,4 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     home_index_path
   end
-
 end

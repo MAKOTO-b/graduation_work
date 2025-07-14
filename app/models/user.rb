@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_many :chat_room_users
   has_many :chat_rooms, through: :chat_room_users
   has_many :chat_messages
+  has_many :rmd_chat_room_users
+  has_many :rmd_chat_rooms, through: :rmd_chat_room_users
+  has_many :rmd_chat_messages
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,12 +14,11 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   mount_uploader :profile_image, ProfileImageUploader
-  
-  def update_without_current_password(params, *options)
 
-    #パスワードとパスワードの確認のフォームが空のときにtrueを返す
+  def update_without_current_password(params, *options)
+    # パスワードとパスワードの確認のフォームが空のときにtrueを返す
     if params[:password].blank? && params[:password_confirmation].blank?
-      #passwordとpassword_confirmationのパラメータを削除
+      # passwordとpassword_confirmationのパラメータを削除
       params.delete(:password)
       params.delete(:password_confirmation)
     end
@@ -25,5 +27,4 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-
 end

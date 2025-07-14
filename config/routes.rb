@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users,
   controllers: {
-    registrations: 'registrations',
-    sessions: 'sessions'
+    registrations: "registrations",
+    sessions: "sessions"
   }
 
-  root 'top#index'
+  root "top#index"
 
-  resources :home, only: [:index]
-  resources :chat_rooms, only: [:create, :show]
+  resources :home, only: [ :index ]
+  resources :chat_rooms, only: [ :create, :show ]
+  resources :matching, only: [ :index ]
+  resources :rmd_chat_rooms, only: [ :create, :show ]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
