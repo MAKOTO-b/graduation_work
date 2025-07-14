@@ -22,6 +22,12 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
+      - name: DB migration
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+
   lint:
     runs-on: ubuntu-latest
     steps:
