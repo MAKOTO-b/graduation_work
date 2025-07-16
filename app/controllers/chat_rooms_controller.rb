@@ -26,7 +26,6 @@ class ChatRoomsController < ApplicationController
   def show
     # 送られたパラメータ(id)を元にレコードを取得
     @chat_room = ChatRoom.find(params[:id])
-    @User_name = User.find(params[:id])
     @chat_messages = ChatMessage.where(chat_room: @chat_room)
   end
 end
