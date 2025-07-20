@@ -16,7 +16,6 @@ const appChatRoom = consumer.subscriptions.create("ChatRoomChannel", {
     //insertAdjacentHTML で第2引数のdata['chat_message']を挿入する。挿入位置は、
     // 'beforeend'なので、element 内部の、最後の子要素の後に挿入する。
     chatMessages.insertAdjacentHTML("beforeend", data["chat_message"]);
-    window.scrollBy(0, 10000);
   },
 
   //chat_room_channel.rbのspeakアクションへデータ送信

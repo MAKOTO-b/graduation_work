@@ -1,3 +1,4 @@
+<%= render partial: "shared/header" %>
 <!-- チャットボット -->
 <div id="chat-bot-container">
   <!-- メッセージ表示部分 -->
@@ -5,7 +6,7 @@
     <% if @messages %>
       <% @messages.each do |message| %>
         <div class="message <%= message['role'] == 'user' ? 'user' : '' %>">
-          <p><%= message['content'] %></p>
+          <p><%= message["content"] %></p>
         </div>
       <% end %>
     <% end %>
@@ -20,6 +21,8 @@
     <% end %>
   </div>
 </div>
+
+<%= render partial: "shared/footer" %>
 
 <!-- ページ内のスクリプト -->
 <script>

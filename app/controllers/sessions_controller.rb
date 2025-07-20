@@ -15,13 +15,8 @@ class SessionsController < Devise::SessionsController
   # 前日のデータを全削除
   def cleanup_old_data
     # レコードがあった場合のみ処理を実行した方がいいか?
-    # 個人チャット
-    ChatRoomUser.where("created_at < ?", Date.today).destroy_all
-    ChatMessage.where("created_at < ?", Date.today).destroy_all
-    ChatRoom.where("created_at < ?", Date.today).destroy_all
-    # ランダムチャット
-    RmdChatRoomUser.where("created_at < ?", Date.today).destroy_all
-    RmdChatMessage.where("created_at < ?", Date.today).destroy_all
-    RmdChatRoom.where("created_at < ?", Date.today).destroy_all
+
+    # !!!!!エラー発生あり
+
   end
 end
