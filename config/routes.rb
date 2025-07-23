@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   # プライバシーポリシー
   get 'privacy', to: 'pages#privacy'
+  # 利用規約
+  get 'tos', to: 'pages#tos'
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

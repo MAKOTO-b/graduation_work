@@ -1,8 +1,14 @@
 <footer class="fixed-bottom">
   <ul class="footer-menu">
-    <li>お問い合わせ ｜</li>
-    <li>利用規約 ｜</li>
-    <li>プライバシーポリシー</li>
+    <li>
+      <%= link_to"お問い合わせ ｜", "https://docs.google.com/forms/d/e/1FAIpQLSdFmRizcDWSIunvD6xsyCQqAxIThrRudRHSB4mKmXEZI4MPpA/viewform?embedded=true" ,class: "text-white" %>
+    </li>
+    <li>
+      <%= link_to"利用規約 ｜", tos_path ,class: "text-white" %>
+    </li>
+    <li>
+      <%= link_to"プライバシーポリシー", privacy_path, class: "text-white" %>
+    </li>
     </ul>
     <p>© All rights reserved by spill out.</p>
   </footer>
