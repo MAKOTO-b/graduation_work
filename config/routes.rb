@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     sessions: "sessions"
   }
 
-  root "top#index"
+  root "home#index"
 
   resources :home, only: [ :index ]
   resources :chat_rooms, only: [ :create, :show ]
   resources :matching, only: [ :index ]
   resources :rmd_chat_rooms, only: [ :create, :show ]
+  resources :users, only: [:show, :edit, :update]
 
   get "up" => "rails/health#show", as: :rails_health_check
 

@@ -1,4 +1,4 @@
-  <header class="header sticky-top" id="header">
+  <header class="header sticky-top py-2" id="header">
     <div class="header-container">
       <div class="container-small">
         <a class="">
@@ -9,26 +9,79 @@
         </button>
       </div>
       <nav class="headB">
+        <% if user_signed_in? %>
         <ul>
           <li>
-            <%= link_to"home", home_index_path, class: "sidebar-title"%>
+            <%= link_to home_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="home-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >ホーム</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to "chat room", chat_rooms_path, data: { turbo_method: :post }, class: "sidebar-title"%>
+            <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿???</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to"free chat", matching_index_path, class: "sidebar-title"%>
+            <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿一覧???</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to"chat bot", bot_messages_path, class: "sidebar-title"%>
+            <%= link_to bot_messages_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="phone-portrait-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >チャットボット</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to"profile", edit_user_registration_path, class: "sidebar-title"%>
+            <%= link_to user_path(current_user), class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="person-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >プロフィール</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to "log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "sidebar-title" %>
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="exit-outline" style="font-size: 2rem;"></ion-icon>
+            <span >ログアウト</span>
+            <% end %>
           </li>
         </ul>
+        <% else %>
+        <ul>
+          <li>
+            <%= link_to home_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="home-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >ホーム</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿???</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿一覧???</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="enter-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >ログイン</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="checkmark-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >新規登録</span>
+            <% end %>
+          </li>
+        </ul>
+        <% end %>
       </nav>
     </div>
   </header>
