@@ -1,0 +1,57 @@
+<%= render partial: "shared/header" %>
+<!-- チャットボット -->
+<div id="chat-bot-container">
+  <!-- メッセージ表示部分 -->
+  <div id="messages">
+    <% if @messages %>
+      <% @messages.each do |message| %>
+        <div class="message <%= message['role'] == 'user' ? 'user' : '' %>">
+          <p><%= message["content"] %></p>
+        </div>
+      <% end %>
+    <% end %>
+    <div id="chat-bottom"></div>
+  </div>
+
+  <!-- 入力部分 -->
+  <div id="message-form">
+    <%= form_with(url: bot_messages_path, local: true, id: 'chat-message-form') do |form| %>
+      <%= form.text_field :message, id: 'message_input', placeholder: 'メッセージを入力' %>
+      <%= form.submit '送信' %>
+      <%= form.submit '削除', formaction: bot_messages_clear_session_path %>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: "shared/footer" %>
+
+<!-- ページ内のスクリプト -->
+<script>
+  // 自動でスクロールする
+  function scrollToBottom() {
+    const bottom = document.getElementById("chat-bottom");
+    if (bottom) {
+      bottom.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  // 初回ロード時
+  document.addEventListener("turbo:load", scrollToBottom);
+
+  // メッセージ送信完了時（Turboがlocal: trueでも発火）
+  document.addEventListener("turbo:submit-end", scrollToBottom);
+
+  // セッションの内容をコンソールに出力
+  const sessionMessages = <%= @messages ? @messages.to_json.html_safe : 'null' %>;
+  console.log('Session Messages:', sessionMessages);
+
+  // 連打防止
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const button = document.getElementById("submit-btn");
+    form?.addEventListener("submit", () => {
+      button.disabled = true;
+      button.innerText = "送信中…";
+    });
+  });
+</script>

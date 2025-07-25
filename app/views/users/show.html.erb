@@ -1,0 +1,29 @@
+<%= render partial: "shared/header" %>
+<!-- app/views/users/show.html.erb -->
+<div class="container d-flex justify-content-center" style="padding-top: 80px;">
+  <div class="card shadow-sm p-4 w-100" style="max-width: 600px;">
+    <div class="row align-items-center">
+      
+      <!-- プロフィール画像 -->
+      <div class="col-md-4 text-center mb-4 mb-md-0">
+        <% if @user.profile_image.present? %>
+          <%= image_tag @user.profile_image.url, class: "rounded-circle img-fluid shadow", alt: "プロフィール画像", size: "150x150" %>
+        <% else %>
+          <%= image_tag 'default_icon.png', class: "rounded-circle img-fluid shadow", alt: "デフォルトアイコン", size: "150x150" %>
+        <% end %>
+      </div>
+
+      <!-- 名前・メール・編集ボタン -->
+      <div class="col-md-8 text-md-start text-center">
+        <h2 class="mb-3"><%= @user.name %></h2>
+        <p class="text-muted mb-4"><%= @user.email %></p>
+
+        <% if current_user == @user %>
+          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-dark px-4 py-2" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/footer" %>

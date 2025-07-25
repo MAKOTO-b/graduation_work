@@ -1,18 +1,103 @@
-<header>
-  <ul class="header">
-    <li class="logo">Spill Out</li>
-    <ul class="menus">
-      <li class="list">
-          <%= link_to "ホーム", home_index_path, class: "title"%>
-      </li>
-      <li class="list">
-          <%= link_to "チャットルーム", chat_rooms_path, data: { turbo_method: :post }, class: "title"%>
-      </li>
-      <li class="list">
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "title" %>
-      </li>
-    </ul>
-  </ul>
-</header>
+  <header class="header sticky-top py-2" id="header">
+    <div class="header-container">
+      <div class="container-small">
+        <a class="">
+          <h1>Spill Out</h1>
+        </a>
+        <button type="button" class="headC">
+          <span class="fa fa-bars" title="MEMU"></span><span class="sr-only">MEMU</span>
+        </button>
+      </div>
+      <nav class="headB">
+        <% if user_signed_in? %>
+        <ul>
+          <li>
+            <%= link_to home_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="home-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">ホーム</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">投稿</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">投稿一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to matching_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="chatbox-ellipses-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">ユーザーチャット</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to bot_messages_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="phone-portrait-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">チャットボット</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user), class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="person-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">プロフィール</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="exit-outline" style="font-size: 2rem;"></ion-icon>
+            <span >ログアウト</span>
+            <% end %>
+          </li>
+        </ul>
+        <% else %>
+        <ul>
+          <li>
+            <%= link_to home_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="home-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >ホーム</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >投稿一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="enter-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >ログイン</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="checkmark-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span >新規登録</span>
+            <% end %>
+          </li>
+        </ul>
+        <% end %>
+      </nav>
+    </div>
+  </header>
 <script type= "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script>
 <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
+<script src="https://use.fontawesome.com/926fe18a63.js"></script>
+  <script>
+    $(function () {
+      $(".headC").click(function () {
+        $(".headB").slideToggle();
+      });
+    });
+  </script>

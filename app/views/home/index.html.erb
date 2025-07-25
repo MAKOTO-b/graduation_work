@@ -1,3 +1,30 @@
-<div class="service min-vh-100 bg-secondary-subtle">
-<%= render partial: "shared/sidebar" %>
+<%= render partial: "shared/header" %>
+<!-- app/views/home/index.html.erb など -->
+<div class="container my-5" style="max-width: 800px;">
+  <!-- ヒーローセクション -->
+  <section class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Spill Out</h1>
+    <p class="lead">キャッチコピー<br></p>
+  </section>
+
+  <!-- 機能紹介 -->
+  <section class="mb-5">
+    <h2 class="h4 mb-3">主な機能</h2>
+    <ul class="list-group">
+      <li class="list-group-item">✔️ 独白ルーム</li>
+      <li class="list-group-item">✔️ 会話ルーム</li>
+      <li class="list-group-item">✔️ カウンセラー型チャットボット</li>
+    </ul>
+  </section>
+
+  <!-- 使い方ガイド -->
+  <section>
+    <h2 class="h4 mb-3">使い方</h2>
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item">会員登録をする</li>
+      <li class="list-group-item">プロフィールを設定</li>
+      <li class="list-group-item">マッチングしてチャットを開始</li>
+    </ol>
+  </section>
 </div>
+<%= render partial: "shared/footer" %>

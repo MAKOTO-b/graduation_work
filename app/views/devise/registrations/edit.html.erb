@@ -1,41 +1,44 @@
-<div class="service bg-secondary-subtle">
-<%= render partial: "shared/sidebar" %>
+<%= render partial: "shared/header" %>
 
-<div class="user-edit-page">
+<div class="container d-flex justify-content-center" style="padding-top: 80px;">
+  <div class="card shadow-sm p-4 w-100" style="max-width: 600px;">
+    <h2 class="text-center mb-4">プロフィールを編集</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="list-unstyled  mb-0">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), class: "profile_form", local: true, method: :patch do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="profile">
-    <img id="profile-img-prev" src="#" class="hidden" />
-    <% if @user.profile_image.url.nil? %>
-      <div class="profile-default-img border border-secondary"></div>
-    <% else %>
-      <%= image_tag @user.profile_image.url, class: "profile-img border border-secondary", id: "profile-img" %>
+      <!-- 名前 -->
+      <div class="mb-3">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <!-- メール -->
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <!-- プロフィール画像 -->
+      <div class="mb-3">
+        <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
+        <%= f.file_field :profile_image, class: "form-control" %>
+      </div>
+
+      <div class="text-center">
+        <%= f.submit "更新する", class: "btn btn-dark px-4 py-2" %>
+      </div>
     <% end %>
-    <label class="profile-img-upload">
-      <%= f.file_field :profile_image, id: "profile_image_upload" %>ファイルを選択
-    </label>
-  </div>
-
-    <div class="form-group m-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
-    </div>
-
-    <div class="form-group m-3">
-      <%= f.text_field :name, class: "form-control", placeholder: "名前" %>
-    </div>
-
-    <div class="form-group m-3">
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
-    </div>
-
-    <div class="form-group m-3">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワードの確認" %>
-    </div>
-
-    <div class="user-edit__submit-btn m-3">
-      <%= f.submit "保存", class: "btn btn-primary w-100" %>
-    </div>
-  <% end %>
 </div>
 </div>
+<div class="text-center mt-4">
+  <%= link_to "プロフィール画面へ戻る", user_path(current_user), class: "btn btn-dark" %>
+</div>
+<%= render partial: "shared/footer" %>
