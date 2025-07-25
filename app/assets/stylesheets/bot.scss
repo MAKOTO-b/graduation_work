@@ -11,10 +11,11 @@
   flex-direction: column;
 }
 
-#chat-messages {
+#messages {
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  max-height: 80vh;
 }
 
 .message {

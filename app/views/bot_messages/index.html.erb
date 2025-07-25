@@ -10,6 +10,7 @@
         </div>
       <% end %>
     <% end %>
+    <div id="chat-bottom"></div>
   </div>
 
   <!-- 入力部分 -->
@@ -27,9 +28,30 @@
 <!-- ページ内のスクリプト -->
 <script>
   // 自動でスクロールする
-  document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+  function scrollToBottom() {
+    const bottom = document.getElementById("chat-bottom");
+    if (bottom) {
+      bottom.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  // 初回ロード時
+  document.addEventListener("turbo:load", scrollToBottom);
+
+  // メッセージ送信完了時（Turboがlocal: trueでも発火）
+  document.addEventListener("turbo:submit-end", scrollToBottom);
 
   // セッションの内容をコンソールに出力
   const sessionMessages = <%= @messages ? @messages.to_json.html_safe : 'null' %>;
   console.log('Session Messages:', sessionMessages);
+
+  // 連打防止
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const button = document.getElementById("submit-btn");
+    form?.addEventListener("submit", () => {
+      button.disabled = true;
+      button.innerText = "送信中…";
+    });
+  });
 </script>

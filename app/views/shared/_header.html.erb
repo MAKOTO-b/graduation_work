@@ -14,31 +14,37 @@
           <li>
             <%= link_to home_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="home-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >ホーム</span>
+            <span class="clickable">ホーム</span>
             <% end %>
           </li>
           <li>
             <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >投稿???</span>
+            <span class="clickable">投稿</span>
             <% end %>
           </li>
           <li>
             <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >投稿一覧???</span>
+            <span class="clickable">投稿一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to matching_index_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
+            <ion-icon name="chatbox-ellipses-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
+            <span class="clickable">ユーザーチャット</span>
             <% end %>
           </li>
           <li>
             <%= link_to bot_messages_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="phone-portrait-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >チャットボット</span>
+            <span class="clickable">チャットボット</span>
             <% end %>
           </li>
           <li>
             <%= link_to user_path(current_user), class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="person-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >プロフィール</span>
+            <span class="clickable">プロフィール</span>
             <% end %>
           </li>
           <li>
@@ -59,13 +65,13 @@
           <li>
             <%= link_to chat_rooms_path,data: { turbo_method: :post },class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="newspaper-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >投稿???</span>
+            <span >投稿</span>
             <% end %>
           </li>
           <li>
             <%= link_to chat_rooms_path, class: "nav-link d-flex flex-column align-items-center",style: "color: #fff;" do %>
             <ion-icon name="library-outline" class="d-none d-lg-inline" style="font-size: 2rem;"></ion-icon>
-            <span >投稿一覧???</span>
+            <span >投稿一覧</span>
             <% end %>
           </li>
           <li>

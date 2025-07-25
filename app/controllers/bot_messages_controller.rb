@@ -1,21 +1,23 @@
 class BotMessagesController < ApplicationController
   def create # （1）
-    unless params[:message].empty?
-      messages = session[:messages] || []
+    return redirect_to bot_messages_path if params[:message].to_s.strip.blank?
 
-      # ユーザーのメッセージを表示する
-      messages << { "content" => params[:message], "role" => "user" }
+    # セッション初期化（なければ空の配列に）
+    messages = session[:messages] ||= []
 
-      # エコーチャットボット
-      assistant_response = params[:message]
+    # ユーザーのメッセージを追加
+    messages << { "content" => params[:message], "role" => "user" }
 
-      messages << { "content" => assistant_response, "role" => "assistant" }
-      session[:messages] = messages
-    end
+    # チャットボットの応答を取得
+    assistant_response = ChatgptService.generate_response(messages)
 
-    # p '@messages: ' + messages.to_s
-    # p 'session[:messages]' + session[:messages].to_s
-    redirect_to bot_messages_path  # create アクション後に index へリダイレクト
+    # 応答を追加
+    messages << { "content" => assistant_response, "role" => "assistant" }
+
+    # セッションには最新10件だけ保持（クッキー容量対策）
+    session[:messages] = messages.last(10)
+
+    redirect_to bot_messages_path
   end
 
   def index # （2）

@@ -8,6 +8,11 @@ header {
     box-shadow: 2px 2px 4px gray;
 }
 
+span.clickable {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .headA {
     padding-left: 10px;
     padding-right: 10px;
@@ -89,7 +94,6 @@ a {
         background: none;
         font-size: 28px;
         opacity: 0.8;
-        cursor: pointer;
         color: #fff;
     }
 
