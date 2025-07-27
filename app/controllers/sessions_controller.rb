@@ -15,8 +15,5 @@ class SessionsController < Devise::SessionsController
   # 前日のデータを全削除
   def cleanup_old_data
     # レコードがあった場合のみ処理を実行した方がいいか?
-
-    # !!!!!エラー発生あり
-
   end
 end

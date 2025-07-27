@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get "grumbles/new"
+  get "grumbles/create"
+  get "grumbles/index"
   devise_for :users,
   controllers: {
     registrations: "registrations",
-    sessions: "sessions"
+    sessions: "sessions",
+    omniauth_callbacks: "users/omniauth_callbacks",
   }
 
   root "home#index"
@@ -12,6 +16,12 @@ Rails.application.routes.draw do
   resources :matching, only: [ :index ]
   resources :rmd_chat_rooms, only: [ :create, :show ]
   resources :users, only: [:show, :edit, :update]
+  resources :grumbles do
+    member do
+      post 'like'
+      delete 'unlike'
+    end
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 
@@ -24,10 +34,12 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  # googleログイン
+
   # プライバシーポリシー
   get 'privacy', to: 'pages#privacy'
   # 利用規約
-  get 'tos', to: 'pages#tos'
+  get 'tos', to: "pages#tos"
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

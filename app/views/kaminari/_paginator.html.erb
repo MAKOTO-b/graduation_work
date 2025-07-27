@@ -1,0 +1,31 @@
+<nav class="pagination-circle">
+  <ul>
+    <%# ← Prev %>
+    <% if current_page > 1 %>
+      <li class="arrow">
+        <%= link_to raw("&#8592;"), url_for(params.to_unsafe_h.merge(page: current_page - 1)) %>
+      </li>
+    <% else %>
+      <li class="arrow disabled"><span>&#8592;</span></li>
+    <% end %>
+
+    <% paginator.each_page do |page| %>
+      <% if page %>
+        <li class="<%= 'active' if page == current_page %>">
+          <%= link_to page, url_for(params.permit!.to_h.merge(page: page)) %>
+        </li>
+      <% else %>
+        <li class="gap">…</li>
+      <% end %>
+    <% end %>
+
+    <%# → Next %>
+    <% if current_page < total_pages %>
+      <li class="arrow">
+        <%= link_to raw("&#8594;"), url_for(params.to_unsafe_h.merge(page: current_page + 1)) %>
+      </li>
+    <% else %>
+      <li class="arrow disabled"><span>&#8594;</span></li>
+    <% end %>
+  </ul>
+</nav>

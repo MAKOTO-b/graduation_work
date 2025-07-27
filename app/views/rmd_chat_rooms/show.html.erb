@@ -1,9 +1,7 @@
-<%= render partial: "shared/header" %>
-    <div id="rmd-chat-messages">
+<div id="rmd-chat-messages">
       <%= render @rmd_chat_messages %>
     </div>
     <form class="fixed-bottom text-center">
     <textarea data-behavior="rmd_chat_room_speaker" data-rmd_chat_room_id="<%= @rmd_chat_room.id %>" placeholder="メッセージを入力" class="rmd-chat-room__message-form_textarea"></textarea>
     </form>
 </div>
-<%= render partial: "shared/footer" %>

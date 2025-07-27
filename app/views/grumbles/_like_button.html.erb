@@ -1,0 +1,17 @@
+<% if current_user.liked?(grumble) %>
+  <%= button_to unlike_grumble_path(grumble),
+                method: :delete,
+                remote: true,
+                class: "btn btn-outline-primary btn-sm d-flex align-items-center" do %>
+    <i class="fa-solid fa-heart text-danger me-1"></i>
+    <span><%= grumble.likes.count %></span>
+  <% end %>
+<% else %>
+  <%= button_to like_grumble_path(grumble),
+                method: :post,
+                remote: true,
+                class: "btn btn-outline-primary btn-sm d-flex align-items-center" do %>
+    <i class="fa-regular fa-heart me-1"></i>
+    <span><%= grumble.likes.count %></span>
+  <% end %>
+<% end %>
