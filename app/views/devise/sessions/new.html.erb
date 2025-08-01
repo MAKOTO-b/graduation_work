@@ -5,11 +5,9 @@
     <!-- Google ログインボタン -->
     <div class="text-center mb-3">
       <%= link_to user_google_oauth2_omniauth_authorize_path,method: :post, data: { turbo: false },
-              class: "btn btn-outline-dark d-flex justify-content-center align-items-center gap-2 mx-auto",
-              style: "width: 220px; font-size: 14px;" do %>
-        <img src="https://developers.google.com/identity/images/g-logo.png"
-             alt="Google Logo"
-             style="height: 18px;">
+              class: "btn btn-white d-flex justify-content-center align-items-center gap-2 mx-auto",
+              style: "width: 220px; font-size: 14px; border: 1px solid #000000;" do %>
+        <%= image_tag("google_logo.png", alt: "Google", width: 20, height: 20) %>
         <span>Sign in with Google</span>
       <% end %>
     </div>
@@ -18,7 +16,6 @@
 
     <!-- メールログインフォーム -->
     <%= form_with model: resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation" }, local: true do |f| %>
-
       <div class="mb-3">
         <%= f.label :email, "メールアドレス", class: "form-label" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>

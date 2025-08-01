@@ -9,12 +9,17 @@
         <p class="mb-2"><%= grumble.content %></p>
 
         <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
+          <!-- 投稿日時 -->
+          <div class="text-muted small">
+            <%= l(grumble.created_at, format: :short) %>
+          </div>
+           <!-- 削除 -->
           <% if grumble.user == current_user %>
             <%= link_to "削除", grumble_path(grumble), method: :delete,
                 data: { turbo_method: :delete },
                 class: "btn btn-outline-secondary btn-sm" %>
           <% end %>
-
+           <!-- いいね -->
           <div id="like-section-<%= grumble.id %>">
             <%= render partial: "like_button", locals: { grumble: grumble } %>
           </div>

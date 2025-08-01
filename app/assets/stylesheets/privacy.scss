@@ -20,15 +20,14 @@
 }
 
 .policy-list {
-  list-style: none;
-  counter-reset: item;
+  list-style: decimal inside; /* 番号を内側に表示して揃える */
   padding-left: 0;
+  margin-left: 1em;
 }
 
 .policy-list li {
-  position: relative;
-  padding-left: 2.2em;
-  margin-bottom: 1.5em;
+  margin: 0.5em 0;
+  line-height: 1.6;
 }
 
 .policy-list li::before {

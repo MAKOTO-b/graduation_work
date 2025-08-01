@@ -1,7 +1,9 @@
   <header class="header sticky-top py-2" id="header">
     <div class="header-container">
       <div class="container-small">
-          <h1>Spill Out</h1>
+        <h1 class="m-0">
+          <%= link_to "Spill Out", home_index_path, class: "text-white text-decoration-none" %>
+        </h1>
         <button type="button" class="headC">
           <span class="fa fa-bars" title="MEMU"></span><span class="sr-only">MEMU</span>
         </button>
@@ -83,10 +85,24 @@
       </nav>
     </div>
   </header>
-  <script>
-    $(function () {
-      $(".headC").click(function () {
-        $(".headB").slideToggle();
-      });
+<% flash.each do |key, message| %>
+  <% css_class =
+    case key.to_sym
+    when :notice then "alert alert-success"
+    when :alert  then "alert alert-danger"
+    when :error  then "alert alert-warning"
+    else "alert alert-info"
+    end %>
+
+  <div class="<%= css_class %> alert-dismissible fade show" role="alert" style="text-align: center; padding: 12px;">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+<script>
+  $(function () {
+    $(".headC").click(function () {
+      $(".headB").slideToggle();
     });
-  </script>
+  });
+</script>
