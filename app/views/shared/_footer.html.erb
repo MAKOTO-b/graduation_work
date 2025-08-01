@@ -1,18 +1,17 @@
-<footer class="fixed-bottom">
-  <ul class="footer-menu">
-    <li>
-      <%= link_to"お問い合わせ ｜",
-      "https://docs.google.com/forms/d/e/1FAIpQLSdFmRizcDWSIunvD6xsyCQqAxIThrRudRHSB4mKmXEZI4MPpA/viewform?embedded=true",
-      class: "text-dark",
-      target: "_blank",
-      rel: "noopener" %>
-    </li>
-    <li>
-      <%= link_to"利用規約 ｜", tos_path ,class: "text-dark" %>
-    </li>
-    <li>
-      <%= link_to"プライバシーポリシー", privacy_path, class: "text-dark" %>
-    </li>
+<footer class="border-top border-black text-muted small py-3 mt-auto" style="background-color: #f8f9fa;">
+  <div class="container text-center">
+    <ul class="list-inline mb-1">
+      <li class="list-inline-item">
+        <%= link_to "お問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSdFmRizcDWSIunvD6xsyCQqAxIThrRudRHSB4mKmXEZI4MPpA/viewform?embedded=true", class: "text-dark", target: "_blank", rel: "noopener" %>
+      </li>
+      <li class="list-inline-item">|</li>
+      <li class="list-inline-item">
+        <%= link_to "利用規約", tos_path, class: "text-dark" %>
+      </li>
+      <li class="list-inline-item">|</li>
+      <li class="list-inline-item">
+        <%= link_to "プライバシーポリシー", privacy_path, class: "text-dark" %>
+      </li>
     </ul>
-    <p>© All rights reserved by spill out.</p>
-  </footer>
+  </div>
+</footer>

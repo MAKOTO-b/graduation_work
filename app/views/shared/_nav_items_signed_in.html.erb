@@ -1,0 +1,35 @@
+<li class="nav-item">
+  <%= link_to home_index_path, class: "nav-link text-white" do %>
+    <ion-icon name="home-outline" style="font-size: 20px;"></ion-icon> ホーム
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to chat_rooms_path, data: { turbo_method: :post }, class: "nav-link text-white" do %>
+    <ion-icon name="newspaper-outline" style="font-size: 20px;"></ion-icon> 投稿
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to chat_rooms_path, class: "nav-link text-white" do %>
+    <ion-icon name="library-outline" style="font-size: 20px;"></ion-icon> 投稿一覧
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to matching_index_path, class: "nav-link text-white" do %>
+    <ion-icon name="chatbox-ellipses-outline" style="font-size: 20px;"></ion-icon> ユーザーチャット
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to bot_messages_path, class: "nav-link text-white" do %>
+    <ion-icon name="phone-portrait-outline" style="font-size: 20px;"></ion-icon> チャットボット
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to user_path(current_user), class: "nav-link text-white" do %>
+    <ion-icon name="person-outline" style="font-size: 20px;"></ion-icon> プロフィール
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
+    <ion-icon name="exit-outline" style="font-size: 20px;"></ion-icon> ログアウト
+  <% end %>
+</li>

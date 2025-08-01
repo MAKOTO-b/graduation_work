@@ -22,6 +22,9 @@ gem "pry-rails"
 gem "carrierwave", "~> 3.1.2"
 gem "mini_magick"
 gem "ruby-openai"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+gem "kaminari"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -37,6 +40,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
+  gem "dotenv-rails"
 end
 
 group :development do

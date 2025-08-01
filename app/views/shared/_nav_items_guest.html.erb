@@ -1,0 +1,25 @@
+<li class="nav-item">
+  <%= link_to home_index_path, class: "nav-link text-white" do %>
+    <ion-icon name="home-outline" style="font-size: 20px;"></ion-icon> ホーム
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to chat_rooms_path, data: { turbo_method: :post }, class: "nav-link text-white" do %>
+    <ion-icon name="newspaper-outline" style="font-size: 20px;"></ion-icon> 投稿
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to chat_rooms_path, class: "nav-link text-white" do %>
+    <ion-icon name="library-outline" style="font-size: 20px;"></ion-icon> 投稿一覧
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to new_user_session_path, class: "nav-link text-white" do %>
+    <ion-icon name="enter-outline" style="font-size: 20px;"></ion-icon> ログイン
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
+    <ion-icon name="checkmark-outline" style="font-size: 20px;"></ion-icon> 新規登録
+  <% end %>
+</li>

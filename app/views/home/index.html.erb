@@ -1,30 +1,126 @@
-<%= render partial: "shared/header" %>
 <!-- app/views/home/index.html.erb など -->
 <div class="container my-5" style="max-width: 800px;">
   <!-- ヒーローセクション -->
   <section class="text-center mb-5">
     <h1 class="display-4 fw-bold">Spill Out</h1>
-    <p class="lead">キャッチコピー<br></p>
+    <p class="lead">このサービスはユーザー抱える悩みやストレスを言葉として吐き出すことで、<br>
+                    少しでもそれらを軽減するためのアプリとなっています。</p>
   </section>
 
   <!-- 機能紹介 -->
   <section class="mb-5">
     <h2 class="h4 mb-3">主な機能</h2>
     <ul class="list-group">
-      <li class="list-group-item">✔️ 独白ルーム</li>
-      <li class="list-group-item">✔️ 会話ルーム</li>
-      <li class="list-group-item">✔️ カウンセラー型チャットボット</li>
+      <li class="list-group-item">✔️ 投稿機能</li>
+      <li class="list-group-item">✔️ 投稿一覧機能</li>
+      <li class="list-group-item">✔️ チャット機能</li>
+      <li class="list-group-item">✔️ カウンセラー型チャットボット機能</li>
     </ul>
   </section>
 
-  <!-- 使い方ガイド -->
-  <section>
-    <h2 class="h4 mb-3">使い方</h2>
-    <ol class="list-group list-group-numbered">
-      <li class="list-group-item">会員登録をする</li>
-      <li class="list-group-item">プロフィールを設定</li>
-      <li class="list-group-item">マッチングしてチャットを開始</li>
-    </ol>
-  </section>
+<!-- ログイン時／非ログイン時の機能一覧 -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">ログイン状態別の利用可否</h2>
+  <table class="table table-bordered text-center">
+    <thead class="table-light">
+      <tr>
+        <th>機能</th>
+        <th>ログイン済み</th>
+        <th>未ログイン</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>投稿機能</td>
+        <td>○</td>
+        <td>×</td>
+      </tr>
+      <tr>
+        <td>投稿一覧機能</td>
+        <td>○</td>
+        <td>○</td>
+      </tr>
+      <tr>
+        <td>チャット機能</td>
+        <td>○</td>
+        <td>×</td>
+      </tr>
+      <tr>
+        <td>カウンセラー型チャット機能</td>
+        <td>○</td>
+        <td>×</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 投稿機能紹介 -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">投稿機能とは</h2>
+  <p>
+    Spill Out では、ユーザーが匿名で日々の愚痴や悩み、思ったことなどを自由に投稿できます。
+    誰にも言えない本音を、安心して打ち明けられる場所です。
+  </p>
+
+  <ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item">投稿は匿名で行われ、名前は表示されません。</li>
+    <li class="list-group-item">投稿に対してユーザーが「いいね」を付けられます。</li>
+    <li class="list-group-item">投稿は投稿一覧ページから誰でも見ることができます。</li>
+    <li class="list-group-item">ログインしていれば自分の投稿を削除できます。</li>
+  </ul>
+
+  <div class="mt-3">
+    <%= link_to '投稿一覧を見てみる', grumbles_path, class: 'btn btn-outline-dark' %>
+    <% if user_signed_in? %>
+      <%= link_to '投稿する', new_grumble_path, class: 'btn btn-outline-dark ms-2' %>
+    <% else %>
+      <%= link_to 'ログインして投稿する', new_user_session_path, class: 'btn btn-outline-dark ms-2' %>
+    <% end %>
+  </div>
+</section>
+
+<!-- チャット機能紹介 -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">チャット機能とは</h2>
+  <p>
+    ランダムにマッチングされたユーザーと、1対1でリアルタイムに会話ができる機能です。
+    気軽に誰かと話したいときに最適です。
+  </p>
+  <ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item">完全ランダムで1人とマッチングされます。</li>
+    <li class="list-group-item">リアルタイムの1対1チャットが可能です。</li>
+    <li class="list-group-item">退出すればすぐに会話を終了できます。</li>
+  </ul>
+
+  <div class="mt-3">
+    <% if user_signed_in? %>
+      <%= link_to 'チャットを開始する', matching_index_path, class: 'btn btn-outline-dark' %>
+    <% else %>
+      <%= link_to 'ログインしてチャットを開始', new_user_session_path, class: 'btn btn-outline-dark' %>
+    <% end %>
+  </div>
+</section>
+
+<!-- チャットボット機能紹介 -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">チャットボット機能とは</h2>
+  <p>
+    AI カウンセラーとの1対1チャットで、愚痴や悩みを安心して話せます。<br>
+    対人のやりとりが苦手な方でも、気軽に心の整理ができます。
+  </p>
+
+  <ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item">OpenAI を活用した自然な会話体験。</li>
+    <li class="list-group-item">24時間いつでも利用可能。</li>
+    <li class="list-group-item">話した内容は他の誰にも共有されません。</li>
+  </ul>
+
+  <div class="mt-3">
+    <% if user_signed_in? %>
+      <%= link_to 'AIカウンセラーと話す', bot_messages_path, class: 'btn btn-outline-dark' %>
+    <% else %>
+      <%= link_to 'ログインしてカウンセラーと話す', new_user_session_path, class: 'btn btn-outline-dark' %>
+    <% end %>
+  </div>
+</section>
 </div>
-<%= render partial: "shared/footer" %>
