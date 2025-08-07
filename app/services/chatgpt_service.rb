@@ -2,10 +2,10 @@ require 'openai'
 
 class ChatgptService
   def self.generate_response(messages)
-    if Rails.env.development?
-      last_message = messages.last
-      return "【モック応答】あなたは「#{last_message&.dig('content')}」と言いました。"
-    end
+    # if Rails.env.development?
+      # last_message = messages.last
+      # return "【モック応答】あなたは「#{last_message&.dig('content')}」と言いました。"
+    # end
     client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key]) # （1）
     system_content = <<~TEXT # （2）
       あなたは親しみやすく、落ち着いたカウンセラーです。
