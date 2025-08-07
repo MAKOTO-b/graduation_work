@@ -11,10 +11,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[google_oauth2]
+         :recoverable, :rememberable, :validatable
+         # :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  validates :uid, uniqueness: true, allow_nil: true
+  # validates :uid, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
   enum matching_status: { unmatched: 0, waiting: 1, matched: 2 }

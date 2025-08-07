@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   controllers: {
     registrations: "registrations",
     sessions: "sessions",
-    omniauth_callbacks: "users/omniauth_callbacks",
+    # omniauth_callbacks: "users/omniauth_callbacks",
   }
 
   root "home#index"

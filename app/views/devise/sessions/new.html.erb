@@ -3,16 +3,18 @@
     <h2 class="text-center mb-4">ログイン</h2>
 
     <!-- Google ログインボタン -->
-    <div class="text-center mb-3">
-      <%= link_to user_google_oauth2_omniauth_authorize_path,method: :post, data: { turbo: false },
-              class: "btn btn-white d-flex justify-content-center align-items-center gap-2 mx-auto",
-              style: "width: 220px; font-size: 14px; border: 1px solid #000000;" do %>
+<%# 
+<!-- Google ログインボタン -->
+<div class="text-center mb-3">
+  <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false },
+          class: "btn btn-white d-flex justify-content-center align-items-center gap-2 mx-auto",
+          style: "width: 220px; font-size: 14px; border: 1px solid #000000;" do 
         <%= image_tag("google_logo.png", alt: "Google", width: 20, height: 20) %>
-        <span>Sign in with Google</span>
+       <%#  <span>Sign in with Google</span>
       <% end %>
-    </div>
+   <%#  </div>
 
-    <div class="text-center mb-3 text-muted">or</div>
+    <div class="text-center mb-3 text-muted">or</div> %>
 
     <!-- メールログインフォーム -->
     <%= form_with model: resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation" }, local: true do |f| %>
