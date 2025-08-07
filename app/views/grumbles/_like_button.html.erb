@@ -1,23 +1,17 @@
-<% if current_user %>
-  <% if current_user.liked?(grumble) %>
-    <%= form_with url: unlike_grumble_path(grumble), method: :delete, local: true do %>
+<%= turbo_frame_tag dom_id(grumble, :like_area) do %>
+  <% if user_signed_in? && current_user.likes.exists?(grumble: grumble) %>
+    <%= form_with url: unlike_grumble_path(grumble), method: :delete do %>
       <button type="submit" class="btn btn-outline-primary btn-sm d-flex align-items-center">
         <i class="fa-solid fa-heart text-danger me-1"></i>
         <span><%= grumble.likes.count %></span>
       </button>
     <% end %>
   <% else %>
-    <%= form_with url: like_grumble_path(grumble), method: :post, local: true do %>
+    <%= form_with url: like_grumble_path(grumble), method: :post do %>
       <button type="submit" class="btn btn-outline-primary btn-sm d-flex align-items-center">
         <i class="fa-regular fa-heart me-1"></i>
         <span><%= grumble.likes.count %></span>
       </button>
     <% end %>
   <% end %>
-<% else %>
-  <!-- 未ログインユーザー用：いいね不可ボタン -->
-  <button class="btn btn-outline-secondary btn-sm disabled d-flex align-items-center">
-    <i class="fa-regular fa-heart me-1"></i>
-    <span><%= grumble.likes.count %></span>
-  </button>
 <% end %>

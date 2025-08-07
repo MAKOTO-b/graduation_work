@@ -1,4 +1,6 @@
 class GrumblesController < ApplicationController
+  include ActionView::RecordIdentifier 
+
   def new
     @grumble = Grumble.new
   end
@@ -18,18 +20,17 @@ class GrumblesController < ApplicationController
 
   def like
     @grumble = Grumble.find(params[:id])
-    @grumble.likes.find_or_create_by(user: current_user)
-      respond_to do |format|
-      format.js
-    end
+    current_user.likes.find_or_create_by!(grumble: @grumble)
+
+    # Turbo Frame が待っているので、同じフレームを含むHTMLを返す
+    render partial: "grumbles/like_button", locals: { grumble: @grumble }
   end
 
   def unlike
     @grumble = Grumble.find(params[:id])
-    @grumble.likes.find_by(user: current_user)&.destroy
-    respond_to do |format|
-      format.js
-    end
+    current_user.likes.find_by(grumble: @grumble)&.destroy
+
+    render partial: "grumbles/like_button", locals: { grumble: @grumble }
   end
 
   def destroy
