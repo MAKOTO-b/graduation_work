@@ -6,7 +6,12 @@ class ChatgptService
       # last_message = messages.last
       # return "【モック応答】あなたは「#{last_message&.dig('content')}」と言いました。"
     # end
-    client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key]) # （1）
+    # 1) ENV を最優先、なければ credentials(:openai, :api_key)
+    api_key = ENV["OPENAI_API_KEY"].presence ||
+              ENV["OPENAI_ACCESS_TOKEN"].presence || # どちらでもOK
+              Rails.application.credentials.dig(:openai, :api_key)
+
+    client = OpenAI::Client.new(access_token: api_key) # （1）
     system_content = <<~TEXT # （2）
       あなたは親しみやすく、落ち着いたカウンセラーです。
       丁寧で思いやりのある言葉づかいで返答してください。
