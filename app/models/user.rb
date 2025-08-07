@@ -14,10 +14,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  enum matching_status: { none: 0, waiting: 1, matched: 2 }
-
   validates :uid, uniqueness: true, allow_nil: true
   validates :name, presence: true
+
+  enum matching_status: { unmatched: 0, waiting: 1, matched: 2 }
 
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -29,6 +29,10 @@ class User < ApplicationRecord
       user.avatar = auth.info.image
       user.skip_confirmation!
     end
+  end
+
+  def matched?
+    self.matching_status == "matched"
   end
 
   def liked?(grumble)

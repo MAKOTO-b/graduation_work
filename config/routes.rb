@@ -12,14 +12,14 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :home, only: [ :index ]
-  resources :chat_rooms, only: [ :create, :show ]
   resources :matching, only: [ :index ]
-  resources :rmd_chat_rooms, only: [ :create, :show ]
+  resources :rmd_chat_rooms, only: [:create, :show, :destroy]
+  resources :rmd_chat_messages, only: [:create]
   resources :users, only: [:show, :edit, :update]
   resources :grumbles do
     member do
-      post 'like'
-      delete 'unlike'
+      post "like"
+      delete "unlike"
     end
   end
 

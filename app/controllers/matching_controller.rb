@@ -14,9 +14,9 @@ class MatchingController < ApplicationController
     # →退出時にマッチングステータスを削除
     # ログインユーザーのレコード取得
     user = User.find(current_user.id)
-    user.update(matching_status: 1)
+    user.update(matching_status: :matched)
 
     # マッチングステータスが空白ではない他のユーザーレコード取得
-    @match_users = User.where(matching_status: 1).where.not(id: current_user.id)
+    @match_users = User.where.not(id: current_user.id)
   end
 end

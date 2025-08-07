@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_27_044507) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_07_173718) do
   create_table "grumbles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.integer "likes_count"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_044507) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "partner_id"
     t.index ["rmd_chat_room_id"], name: "index_rmd_chat_messages_on_rmd_chat_room_id"
     t.index ["user_id"], name: "index_rmd_chat_messages_on_user_id"
   end
@@ -63,7 +64,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_27_044507) do
     t.datetime "updated_at", null: false
     t.string "name", null: false
     t.string "profile_image"
-    t.integer "matching_status"
+    t.integer "matching_status", default: 0, null: false
     t.string "provider"
     t.string "uid"
     t.string "google_name"

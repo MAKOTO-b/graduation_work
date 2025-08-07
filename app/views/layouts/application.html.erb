@@ -2,8 +2,14 @@
 <html>
   <head>
     <title>SpillOut</title>
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'SpillOut' %>" />
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'ストレスを抱えた全てのユーザーのための投稿・チャットアプリです' %>" />
+    <meta property="og:image" content="<%= image_url('ogp.png') %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
