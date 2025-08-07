@@ -28,5 +28,6 @@ class RmdChatRoomsController < ApplicationController
     @rmd_chat_room_user = @rmd_chat_room.rmd_chat_room_users.where.not(user_id: current_user.id).first.user
     # チャットメッセージ取得
     @rmd_chat_messages = RmdChatMessage.where(rmd_chat_room: @rmd_chat_room)
+    @partner = @rmd_chat_room.users.where.not(id: current_user.id).first
   end
 end

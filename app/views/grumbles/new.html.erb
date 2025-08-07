@@ -1,0 +1,46 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0" style="border-radius: 1rem;">
+        <div class="card-body p-4 bg-light">
+          <h2 class="text-center mb-4" style="color: #444;">気持ちをそっと吐き出してみませんか？</h2>
+
+          <%= form_with model: @grumble, local: true do |f| %>
+            <div class="bubble-container">
+              <div class="bubble">
+                <%= f.text_area :content,id: "grumble-content", rows: 5, class: "bubble-textarea", maxlength: 100,placeholder: "今日あったこと、ちょっと吐き出してみてください…" %>
+                <div class="bubble-tail"></div>
+              </div>
+            </div>
+              <p class="text-muted small mt-1 text-center">
+              残り文字数：<span id="char-count">100</span>文字
+              </p>
+            <div class="d-grid mt-3">
+              <%= f.submit "投稿する", class: "btn btn-dark btn-block rounded-pill" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const textarea = document.getElementById("grumble-content");
+    const countDisplay = document.getElementById("char-count");
+
+    if (textarea && countDisplay) {
+      const maxLength = parseInt(textarea.getAttribute("maxlength"));
+
+      const updateCount = function () {
+        const currentLength = textarea.value.length;
+        countDisplay.textContent = maxLength - currentLength;
+      };
+
+      textarea.addEventListener("input", updateCount);
+      updateCount();
+    }
+  });
+</script>

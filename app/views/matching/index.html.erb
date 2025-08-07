@@ -1,7 +1,4 @@
-<%= render partial: "shared/header" %>
-  <div class="matching">
-    <p class="matching-num">マッチング中のユーザーは <%= @match_users.size %>人です</p>
-
+<div class="matching">
     <div class="matching__list">
       <% unless @match_users.empty? %>
         <% @match_users.each do |user| %>
@@ -26,4 +23,4 @@
     <% end %>
   </div>
 </div>
-<%= render partial: "shared/footer" %>
+

@@ -1,0 +1,94 @@
+.bubble-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative; // 親要素を基準に三角の位置決め
+}
+
+.bubble {
+  position: relative;
+  background-color: #e1f5fe;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.5rem;
+  word-break: break-word;
+}
+
+.bubble-textarea {
+  background: transparent;
+  border: none;
+  width: 100%;
+  resize: none;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+  min-height: 120px;
+}
+
+/* ▼ 吹き出しのしっぽ ▼ */
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: 30px;            // 左寄せに調整（必要に応じてpx数を調整）
+  border-width: 40px;    // 三角の大きさ
+  border-style: solid;
+  border-color: #e1f5fe transparent transparent transparent; // 上側が吹き出し色
+}
+
+.pagination-circle {
+  text-align: center;
+  margin-top: 2rem;
+
+  ul {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+  }
+
+  li {
+    a, span {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      border: 1px solid #999;
+      border-radius: 50%;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      font-weight: bold;
+    }
+
+    &.active a,
+    a:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    &.arrow a, &.arrow span {
+      font-size: 1.2rem;
+    }
+
+    &.disabled span {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    &.gap {
+      width: 36px;
+      text-align: center;
+    }
+  }
+}
+
+.btn-outline-primary.btn-sm {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+}

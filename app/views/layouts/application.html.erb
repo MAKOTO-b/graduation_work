@@ -2,8 +2,14 @@
 <html>
   <head>
     <title>SpillOut</title>
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'SpillOut' %>" />
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'ストレスを抱えた全てのユーザーのための投稿・チャットアプリです' %>" />
+    <meta property="og:image" content="<%= image_url('ogp.png') %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,13 +22,19 @@
     <!--link rel="icon" href="/icon.svg" type="image/svg+xml"-->
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js" %>
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" %>
+    <script type= "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script>
+    <script nomodule src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
+    <script src="https://use.fontawesome.com/926fe18a63.js"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
+  <%= render partial: "shared/header" %>
     <%= yield %>
+  <%= render partial: "shared/footer" %>
   </body>
 </html>
