@@ -1,17 +1,24 @@
 <%= turbo_frame_tag dom_id(grumble, :like_area) do %>
-  <% if user_signed_in? && current_user.likes.exists?(grumble: grumble) %>
-    <%= form_with url: unlike_grumble_path(grumble), method: :delete do %>
-      <button type="submit" class="btn btn-outline-primary btn-sm d-flex align-items-center">
-        <i class="fa-solid fa-heart text-danger me-1"></i>
+  <% if user_signed_in? %>
+    <% liked = current_user.likes.exists?(grumble: grumble) %>
+
+    <%= form_with url: (liked ? unlike_grumble_path(grumble) : like_grumble_path(grumble)),
+                  method: (liked ? :delete : :post),
+                  local: true do %>
+      <button type="submit"
+              class="btn btn-sm d-flex align-items-center <%= liked ? 'btn-outline-danger' : 'btn-outline-primary' %>">
+        <i class="<%= liked ? 'fa-solid' : 'fa-regular' %> fa-heart me-1"></i>
         <span><%= grumble.likes.count %></span>
       </button>
     <% end %>
+
   <% else %>
-    <%= form_with url: like_grumble_path(grumble), method: :post do %>
-      <button type="submit" class="btn btn-outline-primary btn-sm d-flex align-items-center">
-        <i class="fa-regular fa-heart me-1"></i>
-        <span><%= grumble.likes.count %></span>
-      </button>
-    <% end %>
+    <!-- 未ログイン時：押せない表示 -->
+    <button class="btn btn-sm btn-outline-secondary d-flex align-items-center"
+            disabled
+            title="いいねするにはログインしてください">
+      <i class="fa-regular fa-heart me-1"></i>
+      <span><%= grumble.likes.count %></span>
+    </button>
   <% end %>
 <% end %>

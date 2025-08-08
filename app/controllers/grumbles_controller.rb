@@ -1,5 +1,6 @@
 class GrumblesController < ApplicationController
-  include ActionView::RecordIdentifier 
+  include ActionView::RecordIdentifier
+  before_action :authenticate_user!, except: [:index]
 
   def new
     @grumble = Grumble.new
