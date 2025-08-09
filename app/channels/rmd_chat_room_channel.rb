@@ -7,15 +7,14 @@ class RmdChatRoomChannel < ApplicationCable::Channel
     message = RmdChatMessage.create!(
       content: data["chat_message"],
       user_id: current_user.id,
-      rmd_chat_room_id: data["chat_room_id"],
-      partner_id: data["partner_id"]
+      rmd_chat_room_id: data["chat_room_id"]
     )
 
-    ActionCable.server.broadcast "rmd_chat_room_#{data["chat_room_id"]}", {
-      chat_message: ApplicationController.render(
-        partial: "rmd_chat_messages/message",
-        locals: { rmd_chat_message: message, current_user: current_user }
+    ActionCable.server.broadcast("rmd_chat_room_#{data["chat_room_id"]}", {
+      chat_message_html: ApplicationController.renderer.render(
+        partial: "rmd_chat_messages/rmd_chat_message",
+        locals: { rmd_chat_message: message, viewer_id: current_user.id }
       )
-    }
+    })
   end
 end

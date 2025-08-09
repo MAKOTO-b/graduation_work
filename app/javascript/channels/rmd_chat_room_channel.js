@@ -1,38 +1,38 @@
-import consumer from "./consumer"
+import consumer from "./consumer";
 
-const roomId = document.getElementById("rmd-chat-room-id")?.dataset?.roomId;
+const chatRoomId = document.getElementById("chat-message-textarea").dataset.chatRoomId;
 
-const chatChannel = consumer.subscriptions.create(
-  { channel: "RmdChatRoomChannel", room_id: roomId },
+const chatRoomChannel = consumer.subscriptions.create(
+  { channel: "RmdChatRoomChannel", room_id: chatRoomId },
   {
     received(data) {
-      const container = document.getElementById("rmd-chat-messages");
-      container.insertAdjacentHTML("beforeend", data.chat_message);
+      const chatMessages = document.getElementById("rmd-chat-messages");
+      chatMessages.insertAdjacentHTML("beforeend", data.chat_message_html);
+      document.getElementById("chat-bottom").scrollIntoView({ behavior: "smooth" });
+
+      if (data.type === "force_exit") {
+        alert(data.message);
+        window.location.href = "/";
+      }
     },
 
-    speak(chat_message, chat_room_id, partner_id) {
-      this.perform("speak", {
-        chat_message: chat_message,
-        chat_room_id: chat_room_id,
-        partner_id: partner_id
-      });
-    }
+    speak(chatMessage, chatRoomId) {
+      this.perform("speak", { chat_message: chatMessage, chat_room_id: chatRoomId });
+    },
   }
 );
 
-// イベントリスナー
+// 送信イベント
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("chat-form");
-  const input = document.getElementById("chat-input");
-  const chatRoomId = form.dataset.roomId;
-  const partnerId = form.dataset.partnerId;
+  const textarea = document.getElementById("chat-message-textarea");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const message = input.value;
-    if (message.trim() === "") return;
+    const message = textarea.value.trim();
+    if (message.length === 0) return;
 
-    chatChannel.speak(message, chatRoomId, partnerId);
-    input.value = "";
+    chatRoomChannel.speak(message, chatRoomId);
+    textarea.value = "";
   });
 });
