@@ -17,7 +17,7 @@ class User < ApplicationRecord
   # validates :uid, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
-  enum matching_status: { unmatched: 0, waiting: 1, matched: 2 }
+  enum :matching_status, { unmatched: 0, waiting: 1, matched: 2 }
 
   mount_uploader :profile_image, ProfileImageUploader
 
