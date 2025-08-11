@@ -9,6 +9,10 @@ default: &default
   username: runteq
   password: password
 
+development:
+  <<: *default
+  database: your_app_development
+
 test:
   <<: *default
   database: circle_test
