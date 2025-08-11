@@ -11,7 +11,7 @@
 
     <% paginator.each_page do |page| %>
       <% if page %>
-        <li class="<%= 'active' if page == current_page %>">
+        <li class="<%= "active" if page == current_page %>">
           <%= link_to page, url_for(params.permit(:q, :sort).to_h.merge(page: page)) %>
         </li>
       <% else %>

@@ -21,7 +21,7 @@ class RmdChatRoomChannel < ApplicationCable::Channel
     )
 
     ActionCable.server.broadcast(
-      "rmd_chat_room_#{data['chat_room_id']}",
+      "rmd_chat_room_#{data["chat_room_id"]}",
       {
         sender_id:  message.user_id,
         mine_html:  mine_html,
