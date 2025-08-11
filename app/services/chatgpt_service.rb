@@ -3,8 +3,8 @@ require "openai"
 class ChatgptService
   def self.generate_response(messages)
     # if Rails.env.development?
-      # last_message = messages.last
-      # return "【モック応答】あなたは「#{last_message&.dig('content')}」と言いました。"
+    # last_message = messages.last
+    # return "【モック応答】あなたは「#{last_message&.dig('content')}」と言いました。"
     # end
     # 1) ENV を最優先、なければ credentials(:openai, :api_key)
     api_key = ENV["OPENAI_API_KEY"].presence ||
@@ -23,7 +23,7 @@ class ChatgptService
     latest_user = messages.reverse.find { |m| m[:role] == "user" || m["role"] == "user" }
     latest_assistant = messages.reverse.find { |m| m[:role] == "assistant" || m["role"] == "assistant" }
 
-     chat_messages = [system_prompt]
+     chat_messages = [ system_prompt ]
      chat_messages << latest_assistant if latest_assistant
      chat_messages << latest_user if latest_user
 
