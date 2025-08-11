@@ -69,6 +69,8 @@ jobs:
           bundler-cache: true
 
       - name: DB migration
+        env:
+          RAILS_ENV: test
         run: |
           cp config/database.ci.yml config/database.yml
           bundle exec rails db:create
