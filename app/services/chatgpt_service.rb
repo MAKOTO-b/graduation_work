@@ -36,10 +36,10 @@ class ChatgptService
      }
     )
 
-  if response.dig("error", "message")
-    return "Error: #{response["error"]["message"]}"
-  else
-    response.dig("choices", 0, "message", "content")
-  end
+    if response.dig("error", "message")
+      "Error: #{response["error"]["message"]}"
+    else
+      response.dig("choices", 0, "message", "content")
+    end
   end
 end

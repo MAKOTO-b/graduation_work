@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users,
   controllers: {
     registrations: "registrations",
-    sessions: "sessions",
+    sessions: "sessions"
     # omniauth_callbacks: "users/omniauth_callbacks",
   }
 
@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   resources :home, only: [ :index ]
   resources :matching, only: [ :index ]
-  resources :rmd_chat_rooms, only: [:create, :show, :destroy]
-  resources :rmd_chat_messages, only: [:create]
-  resources :users, only: [:show, :edit, :update]
+  resources :rmd_chat_rooms, only: [ :create, :show, :destroy ]
+  resources :rmd_chat_messages, only: [ :create ]
+  resources :users, only: [ :show, :edit, :update ]
   resources :grumbles do
     member do
       post "like"
