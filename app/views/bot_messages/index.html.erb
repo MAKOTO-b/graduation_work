@@ -4,7 +4,7 @@
   <div id="messages">
     <% if @messages %>
       <% @messages.each do |message| %>
-        <div class="message <%= message['role'] == 'user' ? 'user' : '' %>">
+        <div class="message <%= message["role"] == "user" ? "user" : "" %>">
           <p><%= message["content"] %></p>
         </div>
       <% end %>
@@ -14,10 +14,10 @@
 
   <!-- 入力部分 -->
   <div id="message-form">
-    <%= form_with(url: bot_messages_path, local: true, id: 'chat-message-form') do |form| %>
-      <%= form.text_field :message, id: 'message_input', placeholder: 'メッセージを入力' %>
-      <%= form.submit '送信' %>
-      <%= form.submit '削除', formaction: bot_messages_clear_session_path %>
+    <%= form_with(url: bot_messages_path, local: true, id: "chat-message-form") do |form| %>
+      <%= form.text_field :message, id: "message_input", placeholder: "メッセージを入力" %>
+      <%= form.submit "送信" %>
+      <%= form.submit "削除", formaction: bot_messages_clear_session_path %>
     <% end %>
   </div>
 </div>
@@ -39,8 +39,8 @@
   document.addEventListener("turbo:submit-end", scrollToBottom);
 
   // セッションの内容をコンソールに出力
-  const sessionMessages = <%= @messages ? @messages.to_json.html_safe : 'null' %>;
-  console.log('Session Messages:', sessionMessages);
+  const sessionMessages = <%= @messages ? @messages.to_json.html_safe : "null" %>;
+  console.log("Session Messages:", sessionMessages);
 
   // 連打防止
   document.addEventListener("DOMContentLoaded", () => {

@@ -8,7 +8,7 @@
         <% if @user.profile_image.present? %>
           <%= image_tag @user.profile_image.url, class: "rounded-circle img-fluid shadow", alt: "プロフィール画像", size: "150x150" %>
         <% else %>
-          <%= image_tag 'profile_default_img_128.png', class: "rounded-circle img-fluid shadow", alt: "デフォルトアイコン", size: "150x150" %>
+          <%= image_tag "profile_default_img_128.png", class: "rounded-circle img-fluid shadow", alt: "デフォルトアイコン", size: "150x150" %>
         <% end %>
       </div>
 

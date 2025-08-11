@@ -1,37 +1,32 @@
 <div id="chat-bot-container">
-<div id="rmd-chat-room-id" data-room-id="<%= @rmd_chat_room.id %>"></div>
-<div id="rmd-chat-messages" class="p-3" style="height: 75vh; overflow-y: auto;">
-  <%= render @rmd_chat_messages, current_user: current_user %>
-  <div id="chat-bottom"></div>
-</div>
+<div id="chat-root"
+     data-user-id="<%= current_user.id %>"
+     data-room-id="<%= @rmd_chat_room.id %>">
 
-<form id="chat-form" data-room-id="<%= @rmd_chat_room.id %>" data-partner-id="<%= @partner.id %>">
-  <div class="input-group mt-3">
-    <textarea id="chat-input" class="form-control" rows="1"></textarea>
-    <button type="submit" class="btn btn-primary">送信</button>
+  <div class="chat-window p-3" id="rmd-chat-messages" style="height:75vh; overflow-y:auto;">
+    <%= render @rmd_chat_messages, viewer_id: current_user.id %>
+    <div id="chat-bottom"></div>
   </div>
-</form>
+
+  <%= form_with url: "#", id: "chat-form", local: true, html: { class: "bg-white border-top p-2" } do %>
+    <div class="input-group">
+      <textarea id="chat-message-textarea"
+                class="form-control"
+                placeholder="メッセージを入力"
+                rows="1" style="resize:none;"></textarea>
+      <button type="submit" class="btn btn-dark ms-2">送信</button>
+    </div>
+  <% end %>
+</div>
 </div>
 
-<!-- ページ内のスクリプト -->
+<!-- ページ内スクリプト（下までスクロール） -->
 <script>
-  // 自動でスクロールする
   function scrollToBottom() {
     const bottom = document.getElementById("chat-bottom");
-    if (bottom) {
-      bottom.scrollIntoView({ behavior: "smooth" });
-    }
+    if (bottom) bottom.scrollIntoView({ behavior: "smooth" });
   }
 
-  window.currentUserId = <%= current_user.id %>;
-
-  // 初回ロード時
   document.addEventListener("turbo:load", scrollToBottom);
-
-  // メッセージ送信完了時（Turboがlocal: trueでも発火）
   document.addEventListener("turbo:submit-end", scrollToBottom);
-
-  // セッションの内容をコンソールに出力
-  const sessionMessages = <%= @messages ? @messages.to_json.html_safe : 'null' %>;
-  console.log('Session Messages:', sessionMessages);
 </script>

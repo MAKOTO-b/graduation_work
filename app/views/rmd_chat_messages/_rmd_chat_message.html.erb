@@ -1,6 +1,37 @@
-<% is_mine = rmd_chat_message.user_id == current_user.id %>
-<div class="d-flex <%= is_mine ? 'justify-content-end' : 'justify-content-start' %> mb-2">
-  <div class="<%= is_mine ? 'bg-primary text-white' : 'bg-light' %> p-2 rounded" style="max-width: 70%;">
-    <%= rmd_chat_message.content %>
+<% viewer_id ||= nil %>
+<% user = rmd_chat_message.user %>
+
+<%
+  # プロフィール画像のURLを安全に取得
+  avatar_url =
+    if user&.respond_to?(:profile_image)
+      if user.profile_image.respond_to?(:url) # CarrierWave
+        user.profile_image.url.presence
+      elsif user.profile_image.respond_to?(:attached?) && user.profile_image.attached? # ActiveStorage
+        url_for(user.profile_image)
+      end
+    end
+  avatar_url ||= asset_path("profile_default_img_128.png")
+%>
+
+<% if rmd_chat_message.user_id == viewer_id %>
+  <!-- 自分のメッセージ（右・青い吹き出し） -->
+  <div class="d-flex justify-content-end my-2">
+    <div class="chat-bubble chat-bubble-right text-white">
+      <%= rmd_chat_message.content %>
+    </div>
   </div>
-</div>
+<% else %>
+  <!-- 相手のメッセージ（左・グレー吹き出し＋アイコン） -->
+  <div class="d-flex justify-content-start my-2 align-items-end">
+    <div class="me-2">
+      <%= image_tag avatar_url,
+            alt: (user&.name || "User"),
+            class: "rounded-circle",
+            style: "width:34px; height:34px; object-fit:cover;" %>
+    </div>
+    <div class="chat-bubble chat-bubble-left">
+      <%= rmd_chat_message.content %>
+    </div>
+  </div>
+<% end %>

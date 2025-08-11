@@ -1,38 +1,44 @@
-import consumer from "./consumer"
+import consumer from "./consumer";
 
-const roomId = document.getElementById("rmd-chat-room-id")?.dataset?.roomId;
+function setupChatRoom() {
+  const root = document.getElementById("chat-root");
+  if (!root) return; // このページ以外では何もしない
 
-const chatChannel = consumer.subscriptions.create(
-  { channel: "RmdChatRoomChannel", room_id: roomId },
-  {
-    received(data) {
-      const container = document.getElementById("rmd-chat-messages");
-      container.insertAdjacentHTML("beforeend", data.chat_message);
-    },
+  const chatRoomId    = parseInt(root.dataset.roomId, 10);
+  const currentUserId = parseInt(root.dataset.userId, 10);
+  const messagesEl    = document.getElementById("rmd-chat-messages");
 
-    speak(chat_message, chat_room_id, partner_id) {
-      this.perform("speak", {
-        chat_message: chat_message,
-        chat_room_id: chat_room_id,
-        partner_id: partner_id
-      });
+  // 既存購読があれば解除してから作り直す（Turboによる二重購読対策）
+  if (window.rmdChatSub) window.rmdChatSub.unsubscribe();
+
+  window.rmdChatSub = consumer.subscriptions.create(
+    { channel: "RmdChatRoomChannel", room_id: chatRoomId },
+    {
+      received(data) {
+        const fromMe = parseInt(data.sender_id, 10) === currentUserId;
+        const html   = fromMe ? data.mine_html : data.theirs_html;
+        messagesEl.insertAdjacentHTML("beforeend", html);
+        document.getElementById("chat-bottom").scrollIntoView({ behavior: "smooth" });
+      },
+      speak(chatMessage) {
+        this.perform("speak", { chat_message: chatMessage, chat_room_id: chatRoomId });
+      }
     }
-  }
-);
+  );
 
-// イベントリスナー
-document.addEventListener("DOMContentLoaded", () => {
+  // フォーム submit をチャネル送信に置き換える（Turbo 環境で一度だけ）
   const form = document.getElementById("chat-form");
-  const input = document.getElementById("chat-input");
-  const chatRoomId = form.dataset.roomId;
-  const partnerId = form.dataset.partnerId;
+  if (form && !form.dataset.bound) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const ta  = document.getElementById("chat-message-textarea");
+      const msg = (ta.value || "").trim();
+      if (!msg) return;
+      window.rmdChatSub.speak(msg);
+      ta.value = "";
+    });
+    form.dataset.bound = "1";
+  }
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const message = input.value;
-    if (message.trim() === "") return;
-
-    chatChannel.speak(message, chatRoomId, partnerId);
-    input.value = "";
-  });
-});
+document.addEventListener("turbo:load", setupChatRoom);
