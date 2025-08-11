@@ -10,7 +10,7 @@ class RmdChatMessagesController < ApplicationController
     # メッセージを相手にもブロードキャスト
     ActionCable.server.broadcast "rmd_chat_room_#{params[:rmd_chat_room_id]}", {
       chat_message: ApplicationController.render(
-        partial: 'rmd_chat_messages/message',
+        partial: "rmd_chat_messages/message",
         locals: { rmd_chat_message: message, current_user: current_user }
       )
     }
