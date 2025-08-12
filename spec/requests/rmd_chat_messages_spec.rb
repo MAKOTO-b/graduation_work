@@ -22,6 +22,6 @@ RSpec.describe "RmdChatMessages", type: :request do
   it "非参加者は投稿NG" do
     sign_in non_member
     post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "x" } }
-    expect(response.status).to satisfy { |s| [302, 403].include?(s) }
+    expect(response.status).to satisfy { |s| [ 302, 403 ].include?(s) }
   end
 end

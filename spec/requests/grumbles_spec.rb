@@ -22,7 +22,7 @@ RSpec.describe "Grumbles", type: :request do
   it "他人の投稿は更新できない" do
     sign_in other
     patch grumble_path(grumble), params: { grumble: { content: "hack" } }
-    expect(response.status).to satisfy { |s| [302, 403].include?(s) }
+    expect(response.status).to satisfy { |s| [ 302, 403 ].include?(s) }
     expect(grumble.reload.content).to eq("old")
   end
 

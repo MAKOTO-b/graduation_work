@@ -88,4 +88,6 @@ RSpec.configure do |config|
 
   # （任意）Pumaで静かに起動
   Capybara.server = :puma, { Silent: true }
+
+  config.include FactoryBot::Syntax::Methods
 end
