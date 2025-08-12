@@ -6,9 +6,11 @@
                   method: (liked ? :delete : :post),
                   local: true do %>
       <button type="submit"
-              class="btn btn-sm d-flex align-items-center <%= liked ? "btn-outline-danger" : "btn-outline-primary" %>">
+              class="btn btn-sm d-flex align-items-center <%= liked ? "btn-outline-danger" : "btn-outline-primary" %>"
+              data-test="like-button"
+              aria-label="like-toggle">
         <i class="<%= liked ? "fa-solid" : "fa-regular" %> fa-heart me-1"></i>
-        <span><%= grumble.likes.count %></span>
+        <span data-test="like-count"><%= grumble.likes.count %></span>
       </button>
     <% end %>
 
@@ -16,9 +18,10 @@
     <!-- 未ログイン時：押せない表示 -->
     <button class="btn btn-sm btn-outline-secondary d-flex align-items-center"
             disabled
-            title="いいねするにはログインしてください">
+            title="いいねするにはログインしてください"
+            data-test="like-button-disabled">
       <i class="fa-regular fa-heart me-1"></i>
-      <span><%= grumble.likes.count %></span>
+      <span data-test="like-count"><%= grumble.likes.count %></span>
     </button>
   <% end %>
 <% end %>
