@@ -7,7 +7,7 @@ RSpec.describe "Rmd Chat", type: :system do
 
   it "ルーム入室→メッセージ送信→履歴に表示→再読込でも残る" do
     user = create(:user, password: "password")
-    room = create(:rmd_chat_room, users: [user])  # factoryのafter(:create)で参加させる
+    room = create(:rmd_chat_room, users: [ user ])  # factoryのafter(:create)で参加させる
     login_as(user, scope: :user)
 
     visit rmd_chat_rooms_path(room)                 # ルートは実装に合わせる

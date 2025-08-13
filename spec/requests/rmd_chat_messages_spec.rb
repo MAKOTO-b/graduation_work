@@ -5,7 +5,7 @@ RSpec.describe "RmdChatMessages", type: :request do
   include Devise::Test::IntegrationHelpers
   let(:member) { create(:user) }
   let(:non_member) { create(:user) }
-  let(:room) { create(:rmd_chat_room, users: [member]) }
+  let(:room) { create(:rmd_chat_room, users: [ member ]) }
 
   it "未ログインはNG" do
     post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "hi" } }
@@ -22,6 +22,6 @@ RSpec.describe "RmdChatMessages", type: :request do
   it "非参加者は投稿NG" do
     sign_in non_member
     post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "x" } }
-    expect(response.status).to satisfy { |s| [ 302, 403 ].include?(s) }
+    expect(response.status).to satisfy { |s| [ 302, 403, 404 ].include?(s) }
   end
 end

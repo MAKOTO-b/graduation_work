@@ -71,7 +71,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         put user_registration_path, params: params
 
         # Deviseは再描画(200)または422を返す実装パターンあり
-        expect(response.status).to satisfy { |s| [200, 422].include?(s) }
+        expect(response.status).to satisfy { |s| [ 200, 422 ].include?(s) }
         expect(response.body).to include("現在のパスワード").or include("Current password")
         expect(user.reload.valid_password?("newpassword")).to be false
       end
