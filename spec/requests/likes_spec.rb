@@ -20,7 +20,7 @@ RSpec.describe "Likes", type: :request do
   it "解除できる" do
     sign_in user
     post like_grumble_path(grumble)
-    delete like_grumble_path(grumble, Like.last)
+    delete unlike_grumble_path(grumble)
     expect(Like.where(user:, grumble:)).to be_empty
   end
 end

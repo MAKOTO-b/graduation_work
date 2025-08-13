@@ -15,11 +15,8 @@ RSpec.describe "プロフィール編集", type: :system do
     # もしくは click_link "プロフィールを編集"
 
     # 編集フォームで更新
-    fill_in "Name", with: "Changed Name"
-    fill_in "Email", with: "changed@example.com"   # ← メールも入力
-    fill_in "Password", with: ""               # 空の更新を許可する実装
-    fill_in "Password confirmation", with: ""
-    fill_in "Current password", with: ""       # あなたの実装では空でOK
+    fill_in "ユーザーネーム", with: "Changed Name"
+    fill_in "メールアドレス", with: "changed@example.com"
     click_button "更新する"                      # ボタン文言に合わせて
 
     # root に戻ってフラッシュ or 表示確認（あなたの実装に合わせて）
