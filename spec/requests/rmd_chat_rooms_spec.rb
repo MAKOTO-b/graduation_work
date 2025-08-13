@@ -28,7 +28,7 @@ RSpec.describe "RmdChatRooms", type: :request do
         get rmd_chat_room_path(room), headers: { "ACCEPT" => "text/html" }
 
         # Turbo/リダイレクトを許容
-        if [302, 303].include?(response.status)
+        if [ 302, 303 ].include?(response.status)
           follow_redirect!
         end
 
