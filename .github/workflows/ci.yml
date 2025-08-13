@@ -76,6 +76,19 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install JS deps
+        run: npm ci
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+        env:
+          RAILS_ENV: test
+
       - name: Run rspec
         run: bundle exec rspec
 
