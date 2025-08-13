@@ -3,7 +3,6 @@ require "rails_helper"
 # path→ok
 # check-ok
 RSpec.describe "プロフィール編集", type: :system do
-
   let(:user) { create(:user, password: "password") }
 
   it "ユーザー詳細から編集画面へ遷移して、名前を変更できる" do

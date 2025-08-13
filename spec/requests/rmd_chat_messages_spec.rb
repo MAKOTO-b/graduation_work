@@ -8,14 +8,14 @@ RSpec.describe "RmdChatMessages", type: :request do
   let(:room) { create(:rmd_chat_room, users: [ member ]) }
 
   it "未ログインはNG" do
-    post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "hi" } }
+    post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "hi" } }, headers: { "ACCEPT" => "text/html" }
     expect(response).to redirect_to new_user_session_path
   end
 
   it "参加者は投稿OK" do
     sign_in member
     expect {
-      post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "hi" } }
+      post rmd_chat_rooms_path(room), params: { rmd_chat_message: { content: "hi" } }, headers: { "ACCEPT" => "text/html" }
     }.to change(RmdChatMessage, :count).by(1)
   end
 

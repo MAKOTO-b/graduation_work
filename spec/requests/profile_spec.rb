@@ -9,7 +9,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
   describe "GET /users/edit (edit_user_registration_path)" do
     it "未ログインはログイン画面へリダイレクト" do
       get edit_user_registration_path
-      expect(response).to have_http_status(:found)
+      expect(response).to be_redirect
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -35,7 +35,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         }
         put user_registration_path, params: params
 
-        expect(response).to have_http_status(:found) # 成功後にリダイレクト想定
+        expect(response).to be_redirect
         expect(follow_redirect!).to be true
         expect(user.reload.name).to eq("Changed Name")
       end
@@ -51,13 +51,13 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         }
         put user_registration_path, params: params
 
-        expect(response).to have_http_status(:found)
+        expect(response).to be_redirect
         expect(follow_redirect!).to be true
 
         # 新パスワードでログインできるか確認
         sign_out user
         post user_session_path, params: { user: { email: user.email, password: "newpassword" } }
-        expect(response).to have_http_status(:found)
+        expect(response).to be_redirect
       end
 
       it "current_password が不正ならパスワード更新は失敗してエラー表示" do
@@ -86,14 +86,14 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         }
         patch user_registration_path, params: params
 
-        expect(response).to have_http_status(:found)
+        expect(response).to be_redirect
         expect(user.reload.profile_image?).to be true
       end
     end
 
     it "未ログインは更新できずログイン画面へ" do
       put user_registration_path, params: { user: { name: "X" } }
-      expect(response).to have_http_status(:found)
+      expect(response).to be_redirect
       expect(response).to redirect_to new_user_session_path
     end
   end

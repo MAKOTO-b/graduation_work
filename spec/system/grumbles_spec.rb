@@ -3,13 +3,12 @@ require "rails_helper"
 # path-ok
 # check-ok
 RSpec.describe "Grumbles", type: :system do
-
   it "ログイン→投稿作成→一覧で表示→いいね→取り消し" do
     user = create(:user, password: "password")
-    login_as(user, scope: :user) # Devise Warden helper（rails_helperで有効化してる前提）
+    login_as(user, scope: :user)
 
     visit new_grumble_path
-    fill_in "Content", with: "これはテスト投稿です"
+    fill_in "grumble-content", with: "これはテスト投稿です"
     click_button "投稿する"
 
     expect(page).to have_text("これはテスト投稿です")
