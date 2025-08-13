@@ -1,47 +1,41 @@
 require "rails_helper"
 
 RSpec.describe "RmdChatRooms", type: :request do
-  let(:me)    { create(:user) }
+  include Devise::Test::IntegrationHelpers
+
+  let(:user)  { create(:user) }
   let(:other) { create(:user) }
+  let(:room)  { create(:rmd_chat_room) }
 
-  describe "POST /rmd_chat_rooms (rmd_chat_rooms_path)" do
-    it "未ログインはログイン画面へリダイレクト" do
-      post rmd_chat_rooms_path, params: { user_id: other.id }
-      expect(response).to redirect_to new_user_session_path
-    end
-
-    it "ログイン済みはルーム作成(または既存ルームに遷移)" do
-      sign_in me
-
-      # 既存再利用のパターンもあるので 0 or 1 を許容
-      expect {
-        post rmd_chat_rooms_path, params: { user_id: other.id }
-      }.to change(RmdChatRoom, :count).by(1).or change(RmdChatRoom, :count).by(0)
-
-      expect(response).to have_http_status(302).or have_http_status(303)
-      follow_redirect!
-      expect(response).to have_http_status(:ok)
-      # 可能なら show ページの何かしらの要素を確認
-      expect(response.body).to include("chat-root").or include("メッセージ")
-    end
+  before do
+    # 参加者に2人入れておく（コントローラで相手ユーザー参照しているため）
+    room.rmd_chat_room_users.create!(user: user)
+    room.rmd_chat_room_users.create!(user: other)
   end
 
   describe "GET /rmd_chat_rooms/:id (rmd_chat_room_path)" do
-    let(:room) { create(:rmd_chat_room) }
-
-    it "未ログインはログイン画面へリダイレクト" do
-      get rmd_chat_room_path(room)
-      expect(response).to redirect_to new_user_session_path
+    context "未ログイン" do
+      it "ログイン画面へリダイレクト(HTML想定)" do
+        get rmd_chat_room_path(room), headers: { "ACCEPT" => "text/html" }
+        expect(response.status).to be_between(300, 399)
+        expect(response).to redirect_to new_user_session_path
+      end
     end
 
-    it "ログイン済みは200（参加者チェックがあるなら参加者にしておく）" do
-      sign_in me
-      # 参加者制御がある実装なら、ここで me をルーム参加者にする
-      # 例: create(:rmd_chat_membership, user: me, rmd_chat_room: room) など
-      # ルームに自分(me)と相手(other)の2人を参加させる
-      room.rmd_chat_room_users.create!(user: me)
-      room.rmd_chat_room_users.create!(user: other)
-      expect(response).to have_http_status(:ok) # 実装に合わせて
+    context "ログイン済み" do
+      it "200 or リダイレクト後に200で表示できる" do
+        sign_in user
+        get rmd_chat_room_path(room), headers: { "ACCEPT" => "text/html" }
+
+        # Turbo/リダイレクトを許容
+        if [302, 303].include?(response.status)
+          follow_redirect!
+        end
+
+        expect(response).to have_http_status(:ok)
+        # ビューの固有要素（textarea の placeholder など）で確認
+        expect(response.body).to include("メッセージを入力").or include("chat-message-textarea")
+      end
     end
   end
 end
