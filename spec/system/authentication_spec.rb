@@ -3,7 +3,6 @@ require "rails_helper"
 # path-ok
 # check-ok
 RSpec.describe "Authentication", type: :system do
-  before { driven_by(:selenium, using: :chrome, options: { headless: true }) }
 
   it "ユーザー登録できてログイン状態になる" do
     visit new_user_registration_path

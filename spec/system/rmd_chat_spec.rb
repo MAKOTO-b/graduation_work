@@ -3,7 +3,6 @@ require "rails_helper"
 # path-ok
 # check-ok
 RSpec.describe "Rmd Chat", type: :system do
-  before { driven_by(:selenium, using: :chrome, options: { headless: true }) }
 
   it "ルーム入室→メッセージ送信→履歴に表示→再読込でも残る" do
     user = create(:user, password: "password")

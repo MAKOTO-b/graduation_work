@@ -3,7 +3,6 @@ require "rails_helper"
 # path-ok
 # check-ok
 RSpec.describe "Grumbles", type: :system do
-  before { driven_by(:selenium, using: :chrome, options: { headless: true }) }
 
   it "ログイン→投稿作成→一覧で表示→いいね→取り消し" do
     user = create(:user, password: "password")

@@ -3,7 +3,6 @@ require "rails_helper"
 # path→ok
 # check-ok
 RSpec.describe "プロフィール編集", type: :system do
-  before { driven_by(:selenium, using: :chrome, options: { headless: true }) }
 
   let(:user) { create(:user, password: "password") }
 
