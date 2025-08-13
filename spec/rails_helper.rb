@@ -108,5 +108,4 @@ RSpec.configure do |config|
     driven_by :headless_chrome
   end
 end
-
 end

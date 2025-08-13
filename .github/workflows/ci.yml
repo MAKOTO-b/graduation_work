@@ -80,9 +80,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'yarn'
 
-      - name: Install JS deps
-        run: npm ci
+      - name: Install JS dependencies
+        run: yarn install
 
       - name: Precompile assets
         run: bin/rails assets:precompile
