@@ -9,7 +9,7 @@ RSpec.describe "Rmd Chat", type: :system do
     login_as(user, scope: :user)
 
     visit rmd_chat_rooms_path(room)                 # ルートは実装に合わせる
-    fill_in "message_input", with: "こんにちは"     # 入力のname/id/labelに合わせる
+    fill_in "chat-message-textarea", with: "こんにちは"
     click_button "送信"
 
     expect(page).to have_text("こんにちは")

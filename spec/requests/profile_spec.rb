@@ -36,7 +36,8 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         put user_registration_path, params: params
 
         expect(response).to be_redirect
-        expect(follow_redirect!).to be true
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
         expect(user.reload.name).to eq("Changed Name")
       end
 

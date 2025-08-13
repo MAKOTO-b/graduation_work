@@ -11,8 +11,7 @@ RSpec.describe "プロフィール編集", type: :system do
     # まず users#show を開く
     visit user_path(user)
 
-    # 編集リンクをクリック（data-test 推奨。無ければテキストで）
-    find("[data-test='profile-edit-link']").click
+    click_link "プロフィールを編集"
     # もしくは click_link "プロフィールを編集"
 
     # 編集フォームで更新
@@ -32,7 +31,6 @@ RSpec.describe "プロフィール編集", type: :system do
     other = create(:user)
     visit user_path(other)
 
-    expect(page).not_to have_selector("[data-test='profile-edit-link']")
-    # もしくは expect(page).not_to have_link("プロフィールを編集")
+    expect(page).not_to have_link("プロフィールを編集")
   end
 end
