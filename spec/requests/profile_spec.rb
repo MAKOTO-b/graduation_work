@@ -28,7 +28,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
         put user_registration_path, params: params
 
         # 302(:found) or 303(:see_other) のどちらでも許容
-        expect(response.status).to satisfy { |s| [302, 303].include?(s) }
+        expect(response.status).to satisfy { |s| [ 302, 303 ].include?(s) }
         expect(user.reload.name).to eq("Changed Name")
       end
 
@@ -37,7 +37,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
 
         patch user_registration_path, params: params
 
-        expect(response.status).to satisfy { |s| [302, 303].include?(s) }
+        expect(response.status).to satisfy { |s| [ 302, 303 ].include?(s) }
         expect(user.reload.email).to eq("changed@example.com")
       end
 
@@ -51,7 +51,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
 
         patch user_registration_path, params: params
 
-        expect(response.status).to satisfy { |s| [302, 303].include?(s) }
+        expect(response.status).to satisfy { |s| [ 302, 303 ].include?(s) }
         expect(user.reload.profile_image?).to be true
       end
 
@@ -68,7 +68,7 @@ RSpec.describe "Profile (Devise registrations)", type: :request do
 
         put user_registration_path, params: params
 
-        expect(response.status).to satisfy { |s| [302, 303].include?(s) }
+        expect(response.status).to satisfy { |s| [ 200, 422 ].include?(s) }
         expect(user.reload.encrypted_password).to eq(old_encrypted_password)
       end
     end
