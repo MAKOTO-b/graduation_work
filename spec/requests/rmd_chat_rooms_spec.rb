@@ -38,8 +38,10 @@ RSpec.describe "RmdChatRooms", type: :request do
       sign_in me
       # 参加者制御がある実装なら、ここで me をルーム参加者にする
       # 例: create(:rmd_chat_membership, user: me, rmd_chat_room: room) など
-      get rmd_chat_room_path(room)
-      expect(response).to have_http_status(:ok).or have_http_status(:forbidden) # 実装に合わせて
+      # ルームに自分(me)と相手(other)の2人を参加させる
+      room.rmd_chat_room_users.create!(user: me)
+      room.rmd_chat_room_users.create!(user: other)
+      expect(response).to have_http_status(:ok) # 実装に合わせて
     end
   end
 end
