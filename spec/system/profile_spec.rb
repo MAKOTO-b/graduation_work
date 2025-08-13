@@ -1,0 +1,33 @@
+require "rails_helper"
+
+# path→ok
+# check-ok
+RSpec.describe "プロフィール編集", type: :system do
+  let(:user) { create(:user, password: "password") }
+
+  it "ユーザー詳細から編集画面へ遷移して、名前を変更できる" do
+    login_as(user, scope: :user)
+
+    # まず users#show を開く
+    visit user_path(user)
+
+    click_link "プロフィールを編集"
+    # もしくは click_link "プロフィールを編集"
+
+    # 編集フォームで更新
+    fill_in "ユーザーネーム", with: "Changed Name"
+    fill_in "メールアドレス", with: "changed@example.com"
+    click_button "更新する"                      # ボタン文言に合わせて
+
+    # root に戻ってフラッシュ or 表示確認（あなたの実装に合わせて）
+    expect(page).to have_content("アカウント情報を変更しました").or have_content("Changed Name")
+  end
+
+  it "他人のユーザー詳細では編集リンクが出ない" do
+    login_as(user, scope: :user)
+    other = create(:user)
+    visit user_path(other)
+
+    expect(page).not_to have_link("プロフィールを編集")
+  end
+end

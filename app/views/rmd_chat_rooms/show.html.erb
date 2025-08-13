@@ -1,23 +1,23 @@
 <div id="chat-bot-container">
-<div id="chat-root"
-     data-user-id="<%= current_user.id %>"
-     data-room-id="<%= @rmd_chat_room.id %>">
+  <div id="chat-root"
+       data-user-id="<%= current_user.id %>"
+       data-room-id="<%= @rmd_chat_room.id %>">
 
-  <div class="chat-window p-3" id="rmd-chat-messages" style="height:75vh; overflow-y:auto;">
-    <%= render @rmd_chat_messages, viewer_id: current_user.id %>
-    <div id="chat-bottom"></div>
-  </div>
-
-  <%= form_with url: "#", id: "chat-form", local: true, html: { class: "bg-white border-top p-2" } do %>
-    <div class="input-group">
-      <textarea id="chat-message-textarea"
-                class="form-control"
-                placeholder="メッセージを入力"
-                rows="1" style="resize:none;"></textarea>
-      <button type="submit" class="btn btn-dark ms-2">送信</button>
+    <div class="chat-window p-3" id="rmd-chat-messages" style="height:75vh; overflow-y:auto;">
+      <%= render @rmd_chat_messages, viewer_id: current_user.id %>
+      <div id="chat-bottom"></div>
     </div>
-  <% end %>
-</div>
+
+    <%= form_with url: "#", id: "chat-form", local: true, html: { class: "bg-white border-top p-2" } do %>
+      <div class="input-group">
+        <textarea id="chat-message-textarea"
+                  class="form-control"
+                  placeholder="メッセージを入力"
+                  rows="1" style="resize:none;"></textarea>
+        <button type="submit" class="btn btn-dark ms-2">送信</button>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- ページ内スクリプト（下までスクロール） -->
