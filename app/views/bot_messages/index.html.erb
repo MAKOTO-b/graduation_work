@@ -1,5 +1,10 @@
 <!-- チャットボット -->
 <div id="chat-bot-container">
+  <% if user_signed_in? %>
+    <div class="text-muted small">
+      本日のチャットボット残り回数：<%= current_user.chatbot_remaining %> / <%= User::CHATBOT_DAILY_LIMIT %>
+    </div>
+  <% end %>
   <!-- メッセージ表示部分 -->
   <div id="messages">
     <% if @messages %>
