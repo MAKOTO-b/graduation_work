@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   def chatbot_remaining
     reset_chatbot_counter_if_new_day!
-    [CHATBOT_DAILY_LIMIT - chatbot_messages_count, 0].max
+    [ CHATBOT_DAILY_LIMIT - chatbot_messages_count, 0 ].max
   end
 
   def can_send_chatbot_message?

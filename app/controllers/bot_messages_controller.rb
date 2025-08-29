@@ -1,6 +1,6 @@
 class BotMessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :enforce_chatbot_daily_limit!, only: [:create]
+  before_action :enforce_chatbot_daily_limit!, only: [ :create ]
 
   # セッションに保存する最大件数・最大文字数をかなり小さくする
   MAX_HISTORY = 6          # 10 -> 6 に圧縮
