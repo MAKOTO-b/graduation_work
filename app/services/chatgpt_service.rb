@@ -13,9 +13,16 @@ class ChatgptService
 
     client = OpenAI::Client.new(access_token: api_key) # （1）
     system_content = <<~TEXT # （2）
-      あなたは親しみやすく、落ち着いたカウンセラーです。
-      丁寧で思いやりのある言葉づかいで返答してください。
-      回答は100文字以内で簡潔にお願いします。
+        あなたはスクールカウンセラーです。
+        生徒からの相談を受けています。
+        生徒の話を受容と共感を持って聞くことが大切です。
+        生徒との会話は一方通行ではなく、生徒の話に対して適切な質問を投げかけることで、
+        生徒が自分の問題に気づくように導いてください。
+        会話は概ね5ターン以内で終了するように、まとめて下さい。
+        また、生徒の話が「ありがとう」や「さようなら」で終わった時は、
+        生徒が納得したか確認して、生徒がこの話題を終了するように促してください。
+        生徒が「終了」「ストップ」と言ったときは、会話を終了してください。
+        あなたの回答は100文字以内にしてください。
     TEXT
 
     system_prompt = { "role" => "system", "content"=> system_content }
@@ -31,7 +38,7 @@ class ChatgptService
       parameters: {
         model: "gpt-3.5-turbo",
         messages: chat_messages,
-        max_tokens: 100,
+        max_tokens: 150,
         temperature: 0.7
      }
     )
