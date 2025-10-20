@@ -53,13 +53,13 @@
 ## 使用技術
 | カテゴリ | 技術内容 |
 | --- | --- |
-| サーバーサイド | Ruby on Rails 7.0.6・Ruby 3.2.2 |
-| フロントエンド | Ruby on Rails・JavaScript |
-| CSSフレームワーク | Tailwindcss + daisyUI |
-| Web API | OpenAI API(GPT-4)・Google API・LINE Developers |
+| サーバーサイド |  |
+| フロントエンド |  |
+| CSSフレームワーク |  |
+| Web API | OpenAI API(GPT-3.5)・Google API |
 | データベースサーバー | MySQL |
 | ファイルサーバー | AWS S3 |
-| アプリケーションサーバー | Fly.io |
+| アプリケーションサーバー | puma |
 | バージョン管理ツール | GitHub |
 <br>
 
