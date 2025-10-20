@@ -1,4 +1,5 @@
 class ProfileImageUploader < CarrierWave::Uploader::Base
+  storage Rails.env.production? ? :fog : :file
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
