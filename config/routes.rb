@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  get "/__debug_storage", to: ->(_env) {
+    body = ProfileImageUploader.new.storage.class.name
+    [200, { "Content-Type" => "text/plain" }, [body]]
+  }
   get "grumbles/new"
   get "grumbles/create"
   get "grumbles/index"
-  # 確認用
-  get "/debug/storage", to: proc { |_|
-    klass = ProfileImageUploader.new.storage.class.name
-    [200, {"Content-Type"=>"text/plain"}, [klass]]
-  }
 
   devise_for :users,
   controllers: {
