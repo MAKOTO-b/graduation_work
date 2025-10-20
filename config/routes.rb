@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "/__debug_storage", to: ->(_env) {
-    body = ProfileImageUploader.new.storage.class.name
+    uploader = ProfileImageUploader.new
+    body = uploader.send(:storage).class.name   # ← ここがポイント！
     [200, { "Content-Type" => "text/plain" }, [body]]
   }
   get "grumbles/new"
