@@ -11,7 +11,8 @@ CarrierWave.configure do |config|
       region:                ENV['AWS_REGION'] # 例: ap-northeast-1
     }
     config.fog_directory = ENV['AWS_BUCKET']
-    config.fog_public    = true  # 公開URLで配信（簡単）。非公開にしたい場合は false に。
+    config.fog_public    = true
+    # ※ まずは asset_host は設定しない（S3のURLで出るようにする）
   else
     config.storage = :file
     config.enable_processing = !Rails.env.test?
