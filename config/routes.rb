@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   get "grumbles/new"
   get "grumbles/create"
   get "grumbles/index"
+  # 確認用
+  get "/debug/storage", to: proc { |_|
+    klass = ProfileImageUploader.new.storage.class.name
+    [200, {"Content-Type"=>"text/plain"}, [klass]]
+  }
+
   devise_for :users,
   controllers: {
     registrations: "registrations",
