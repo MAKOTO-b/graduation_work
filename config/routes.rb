@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "/__ping", to: ->(_){ [200, {"Content-Type"=>"text/plain"}, ["ok"]] }
+  get "/__version", to: ->(_){
+    rev = ENV.fetch("HEROKU_SLUG_COMMIT","unknown")[0,7]
+    [200, {"Content-Type"=>"text/plain"}, [rev]]
+  }
   get "/__debug_storage", to: ->(_env) {
     uploader = ProfileImageUploader.new
     body = uploader.send(:storage).class.name   # ← ここがポイント！
