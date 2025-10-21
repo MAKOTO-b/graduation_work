@@ -3,13 +3,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     if params[:password].present? || params[:password_confirmation].present?
-      # パスワードを変更する場合は current_password を必須にして Devise 標準を使う
-      # ※ここでは current_password を消さないこと！
+      # パスワード変更時は Devise 既定のフロー（current_password 必須）
       resource.update_with_password(params)
     else
-      # パスワード変更なしの場合は current_password を捨てて独自メソッドで更新
-      params.delete(:current_password)
-      resource.update_without_current_password(params)
+      # 画像/名前/メールだけの更新は current_password なしでOK
+      params = params.except(:current_password)
+      resource.update_without_password(params)
     end
   end
 

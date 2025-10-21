@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get "grumbles/create"
   get "grumbles/index"
 
-  get "/__debug_storage", to: "home#storage"
-
   devise_for :users,
   controllers: {
     registrations: "registrations",
