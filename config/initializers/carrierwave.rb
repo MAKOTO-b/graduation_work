@@ -8,13 +8,14 @@ CarrierWave.configure do |config|
       provider:              'AWS',
       aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      region:                ENV['AWS_REGION'] # 例: ap-northeast-1
+      region:                ENV['AWS_REGION']
     }
     config.fog_directory = ENV['AWS_BUCKET']
-    config.fog_public    = true
-    # ※ まずは asset_host は設定しない（S3のURLで出るようにする）
+
+    # ▼ここがポイント：ACLを送らない（public-read等を付けない）
+    config.fog_public = false
+    config.fog_attributes = {} # 念のため空に
   else
     config.storage = :file
-    config.enable_processing = !Rails.env.test?
   end
 end
