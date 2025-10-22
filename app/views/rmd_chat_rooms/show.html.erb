@@ -22,11 +22,20 @@
 
 <!-- ページ内スクリプト（下までスクロール） -->
 <script>
-  function scrollToBottom() {
+  function scrollToBottom(isSmooth = false) {
     const bottom = document.getElementById("chat-bottom");
-    if (bottom) bottom.scrollIntoView({ behavior: "smooth" });
+    if (bottom) {
+      bottom.scrollIntoView({ behavior: isSmooth ? "smooth" : "auto" });
+    }
   }
 
-  document.addEventListener("turbo:load", scrollToBottom);
-  document.addEventListener("turbo:submit-end", scrollToBottom);
+  // 初回ロード時（＝チャットルームに入室したとき）は即ジャンプのみ
+  document.addEventListener("turbo:load", () => {
+    scrollToBottom(false); // ← スムーズではなく「即」表示
+  });
+
+  // メッセージ送信完了時のみスムーズスクロール
+  document.addEventListener("turbo:submit-end", () => {
+    scrollToBottom(true);
+  });
 </script>
