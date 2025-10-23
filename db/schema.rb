@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_29_211047) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_23_060140) do
   create_table "grumbles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.integer "likes_count"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_29_211047) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "partner_id"
+    t.boolean "is_read", default: false, null: false
     t.index ["rmd_chat_room_id"], name: "index_rmd_chat_messages_on_rmd_chat_room_id"
     t.index ["user_id"], name: "index_rmd_chat_messages_on_user_id"
   end
