@@ -4,20 +4,25 @@ class RmdChatRoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
+    room = RmdChatRoom.find(data["chat_room_id"])
+    partner = room.users.where.not(id: current_user.id).first
+
     message = RmdChatMessage.create!(
       content:      data["chat_message"],
       user_id:      current_user.id,
-      rmd_chat_room_id: data["chat_room_id"]
+      rmd_chat_room_id: data["chat_room_id"],
+      partner_id: partner&.id,
+      is_read: false
     )
 
     mine_html = ApplicationController.renderer.render(
       partial: "rmd_chat_messages/rmd_chat_message",
-      locals:  { rmd_chat_message: message, viewer_id: message.user_id } # 送信者視点
+      locals:  { rmd_chat_message: message, viewer_id: current_user.id } # 送信者視点
     )
 
     theirs_html = ApplicationController.renderer.render(
       partial: "rmd_chat_messages/rmd_chat_message",
-      locals:  { rmd_chat_message: message, viewer_id: 0 } # 相手視点（必ず左）
+      locals:  { rmd_chat_message: message, viewer_id: partner&.id } # 相手視点（必ず左）
     )
 
     ActionCable.server.broadcast(
