@@ -1,26 +1,29 @@
-<div class="matching">
-    <div class="matching__list">
-      <% unless @match_users.empty? %>
-        <% @match_users.each do |user| %>
-        
-         <%= link_to rmd_chat_rooms_path(params: { user_id: user.id }), data: { turbo_method: :post } do%>
+<div class="container py-5">
+  <% if @match_users.any? %>
+    <div class="row g-4 justify-content-start">
+      <% @match_users.each do |user| %>
+        <div class="col-6 col-md-4 col-lg-3">
+          <%= link_to rmd_chat_rooms_path(params: { user_id: user.id }), data: { turbo_method: :post }, class: "text-decoration-none" do %>
+            <div class="card shadow-sm text-center user-card h-100">
+              <% if user.profile_image.url.present? %>
+                <%= image_tag user.profile_image.url, class: "card-img-top rounded-circle mt-3 user-avatar mx-auto", alt: "プロフィール画像" %>
+              <% else %>
+                <div class="user-avatar-placeholder mx-auto mt-3">
+                  <i class="bi bi-person-fill text-secondary"></i>
+                </div>
+              <% end %>
 
-         <div class="matching__person">
+              <div class="card-body">
+                <h5 class="card-title text-dark fw-semibold"><%= user.name %></h5>
+              </div>
 
-           <% if user.profile_image.url.nil? %>
-             <div class="matching__person-default-img border border-secondary"></div>
-           <% else %>
-             <%= image_tag user.profile_image.url, class: "matching__person-img border border-secondary" %>
-           <% end %>
-
-           <div class="matching__person-name">
-             <%= user.name %>
-           </div>
-
-         </div>
-        <% end %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <p class="text-center text-muted mt-5">登録ユーザーはいません。</p>
+  <% end %>
 </div>
 
