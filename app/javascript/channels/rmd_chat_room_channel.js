@@ -28,14 +28,30 @@ function setupChatRoom() {
 
   // フォーム submit をチャネル送信に置き換える（Turbo 環境で一度だけ）
   const form = document.getElementById("chat-form");
+  const ta   = document.getElementById("chat-message-textarea");
+
   if (form && !form.dataset.bound) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const ta  = document.getElementById("chat-message-textarea");
+    // 共通送信関数
+    const sendMessage = () => {
       const msg = (ta.value || "").trim();
       if (!msg) return;
       window.rmdChatSub.speak(msg);
       ta.value = "";
+      document.getElementById("chat-bottom")?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    // 送信ボタン（form submit）で送信
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendMessage();
+    });
+
+    // Enterキーで送信（Shift+Enterは改行）
+    ta.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
     });
     form.dataset.bound = "1";
   }
