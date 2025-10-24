@@ -2,14 +2,6 @@ class MatchingController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # テストしたいためここで他ユーザーのマッチングステータスを意図的に更新
-    # テスト用コード(自分以外の全ユーザーのステータスを1へ更新)
-    test_user = User.where("id >= ?", 2)
-    test_user.update(matching_status: 1)
-    # テスト用コード(自分以外の全ユーザーのステータスを0へ更新)
-    # test_user = User.where("id >= ?", 2)
-    # test_user.update(matching_status: 0)
-
     # マッチングステータス更新
     # →退出時にマッチングステータスを削除
     # ログインユーザーのレコード取得
@@ -18,5 +10,14 @@ class MatchingController < ApplicationController
 
     # マッチングステータスが空白ではない他のユーザーレコード取得
     @match_users = User.where.not(id: current_user.id)
+
+    # 相手→自分宛の未読メッセージ数を user_id ごとに集計
+    counts = RmdChatMessage
+            .where(partner_id: current_user.id, is_read: false, user_id: @match_users.select(:id))
+            .group(:user_id)
+            .count
+
+    # 参照しやすいようにHashで持たせる
+    @unread_counts_by_user_id = counts
   end
 end

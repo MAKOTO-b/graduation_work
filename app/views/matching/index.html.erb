@@ -14,7 +14,12 @@
               <% end %>
 
               <div class="card-body">
-                <h5 class="card-title text-dark fw-semibold"><%= user.name %></h5>
+                <h5 class="card-title text-dark fw-semibold">
+                  <%= user.name %>
+                    <% if @unread_counts_by_user_id[user.id].to_i.positive? %>
+                      <span class="badge bg-danger ms-2"><%= @unread_counts_by_user_id[user.id] %></span>
+                    <% end %>
+                </h5>
               </div>
 
             </div>
