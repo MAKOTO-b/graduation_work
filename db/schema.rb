@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_23_060140) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_24_040418) do
   create_table "grumbles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.integer "likes_count"
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_23_060140) do
     t.string "google_name"
     t.integer "chatbot_messages_count", default: 0, null: false
     t.date "chatbot_messages_count_on"
+    t.datetime "last_active_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
