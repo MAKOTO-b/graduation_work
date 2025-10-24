@@ -5,6 +5,7 @@
         <div class="col-6 col-md-4 col-lg-3">
           <%= link_to rmd_chat_rooms_path(params: { user_id: user.id }), data: { turbo_method: :post }, class: "text-decoration-none" do %>
             <div class="card shadow-sm text-center user-card h-100">
+              <!-- プロフィール画像部分 -->
               <% if user.profile_image.url.present? %>
                 <%= image_tag user.profile_image.url, class: "card-img-top rounded-circle mt-3 user-avatar mx-auto", alt: "プロフィール画像" %>
               <% else %>
@@ -13,12 +14,22 @@
                 </div>
               <% end %>
 
+              <!-- オンライン表示 -->
+              <div class="small mt-2">
+                <% if user.last_active_at.present? %>
+                  <span class="text-success fw-semibold">🟢 オンライン</span>
+                <% else %>
+                  <span class="text-muted">未ログイン</span>
+                <% end %>
+              </div>
+
+              <!-- ユーザー名 -->
               <div class="card-body">
                 <h5 class="card-title text-dark fw-semibold">
                   <%= user.name %>
-                    <% if @unread_counts_by_user_id[user.id].to_i.positive? %>
-                      <span class="badge bg-danger ms-2"><%= @unread_counts_by_user_id[user.id] %></span>
-                    <% end %>
+                  <% if @unread_counts_by_user_id[user.id].to_i.positive? %>
+                    <span class="badge bg-danger ms-2"><%= @unread_counts_by_user_id[user.id] %></span>
+                  <% end %>
                 </h5>
               </div>
 
