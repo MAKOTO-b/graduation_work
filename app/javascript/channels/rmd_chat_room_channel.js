@@ -27,33 +27,42 @@ function setupChatRoom() {
   );
 
   // フォーム submit をチャネル送信に置き換える（Turbo 環境で一度だけ）
-  const form = document.getElementById("chat-form");
-  const ta   = document.getElementById("chat-message-textarea");
+const form = document.getElementById("chat-form");
+const ta   = document.getElementById("chat-message-textarea");
 
-  if (form && !form.dataset.bound) {
-    // 共通送信関数
-    const sendMessage = () => {
-      const msg = (ta.value || "").trim();
-      if (!msg) return;
-      window.rmdChatSub.speak(msg);
-      ta.value = "";
-      document.getElementById("chat-bottom")?.scrollIntoView({ behavior: "smooth" });
-    };
+if (form && !form.dataset.bound) {
+  const sendMessage = () => {
+    const msg = (ta.value || "").trim();
+    if (!msg) return;
+    window.rmdChatSub?.speak(msg);
+    ta.value = "";
+    ta.focus();
+    document.getElementById("chat-bottom")?.scrollIntoView({ behavior: "smooth" });
+  };
 
-    // 送信ボタン（form submit）で送信
-    form.addEventListener("submit", (e) => {
+  // 送信ボタン
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    sendMessage();
+  });
+
+  // IME状態を追跡
+  let composing = false;
+  ta.addEventListener("compositionstart", () => { composing = true; });
+  ta.addEventListener("compositionend",   () => { composing = false; });
+
+  // Enterで送信（Shift+Enterは改行）— 変換中は送信しない
+  ta.addEventListener("keydown", (e) => {
+    // IME変換中の Enter（または keyCode 229）は無視
+    if (composing || e.isComposing || e.keyCode === 229) return;
+
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
-    });
+    }
+  });
 
-    // Enterキーで送信（Shift+Enterは改行）
-    ta.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
-    form.dataset.bound = "1";
+  form.dataset.bound = "1";
   }
 }
 
