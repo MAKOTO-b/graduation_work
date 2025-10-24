@@ -40,7 +40,7 @@
 
 | チャット機能 |
 | :---: |
-| [![Image from Gyazo](https://i.gyazo.com/1cf72c225112ddf141002020bc8247e3.gif)](https://gyazo.com/1cf72c225112ddf141002020bc8247e3) |
+| [![Image from Gyazo](https://i.gyazo.com/0085e49e3f5956df58176eb707af6731.gif)](https://gyazo.com/0085e49e3f5956df58176eb707af6731) |
 | <p align="left">登録者の一覧が表示されているので、そこから好きな人とチャットを楽しむことができます。匿名となっているため、普段言いにくいことをリアルタイムで他者と話したりといったように自由にご活用ください。<p> |
 <br>
 
@@ -65,7 +65,7 @@
 <br>
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/827ae30b47443a76b6f3cb82f31b925b.png)](https://gyazo.com/827ae30b47443a76b6f3cb82f31b925b)
+[![Image from Gyazo](https://i.gyazo.com/59a9f67e2fde9ee3483d4b9b752d96bc.png)](https://gyazo.com/59a9f67e2fde9ee3483d4b9b752d96bc)
 
 ## 画面遷移図
 https://www.figma.com/design/BCrnENDFp3uFbXed6p78rP/Untitled?node-id=0-1&t=UoUCtXJuBgtkhhlN-1
