@@ -2,67 +2,86 @@ import consumer from "./consumer";
 
 function setupChatRoom() {
   const root = document.getElementById("chat-root");
-  if (!root) return; // このページ以外では何もしない
+  if (!root) return;
 
   const chatRoomId    = parseInt(root.dataset.roomId, 10);
   const currentUserId = parseInt(root.dataset.userId, 10);
   const messagesEl    = document.getElementById("rmd-chat-messages");
+  const bottomEl      = document.getElementById("chat-bottom");
+  const form          = document.getElementById("chat-form");
+  const ta            = document.getElementById("chat-message-textarea");
 
-  // 既存購読があれば解除してから作り直す（Turboによる二重購読対策）
   if (window.rmdChatSub) window.rmdChatSub.unsubscribe();
 
+  // ---- ActionCable購読 ----
   window.rmdChatSub = consumer.subscriptions.create(
     { channel: "RmdChatRoomChannel", room_id: chatRoomId },
     {
       received(data) {
         const fromMe = parseInt(data.sender_id, 10) === currentUserId;
-        const html   = fromMe ? data.mine_html : data.theirs_html;
-        messagesEl.insertAdjacentHTML("beforeend", html);
-        document.getElementById("chat-bottom").scrollIntoView({ behavior: "smooth" });
+        const html = fromMe ? data.mine_html : data.theirs_html;
+
+        // ✅ bottomEl の直前に挿入（安全）
+        bottomEl.insertAdjacentHTML("beforebegin", html);
+
+        // ✅ 再描画が完了してからスクロール
+        requestAnimationFrame(() => {
+          bottomEl.scrollIntoView({ behavior: "instant" });
+        });
       },
       speak(chatMessage) {
-        this.perform("speak", { chat_message: chatMessage, chat_room_id: chatRoomId });
-      }
+        this.perform("speak", {
+          chat_message: chatMessage,
+          chat_room_id: chatRoomId,
+        });
+      },
     }
   );
 
-  // フォーム submit をチャネル送信に置き換える（Turbo 環境で一度だけ）
-const form = document.getElementById("chat-form");
-const ta   = document.getElementById("chat-message-textarea");
+  // ---- メッセージ送信 ----
+  if (form && !form.dataset.bound) {
+    let composing = false;
 
-if (form && !form.dataset.bound) {
-  const sendMessage = () => {
-    const msg = (ta.value || "").trim();
-    if (!msg) return;
-    window.rmdChatSub?.speak(msg);
-    ta.value = "";
-    ta.focus();
-    document.getElementById("chat-bottom")?.scrollIntoView({ behavior: "smooth" });
-  };
+    const sendMessage = () => {
+      const msg = (ta.value || "").trim();
+      if (!msg) return;
+      window.rmdChatSub?.speak(msg);
 
-  // 送信ボタン
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    sendMessage();
-  });
+      // 入力欄を初期化・高さリセット
+      ta.value = "";
+      ta.style.height = "auto";
 
-  // IME状態を追跡
-  let composing = false;
-  ta.addEventListener("compositionstart", () => { composing = true; });
-  ta.addEventListener("compositionend",   () => { composing = false; });
+      requestAnimationFrame(() => {
+        bottomEl.scrollIntoView({ behavior: "instant" });
+      });
+    };
 
-  // Enterで送信（Shift+Enterは改行）— 変換中は送信しない
-  ta.addEventListener("keydown", (e) => {
-    // IME変換中の Enter（または keyCode 229）は無視
-    if (composing || e.isComposing || e.keyCode === 229) return;
-
-    if (e.key === "Enter" && !e.shiftKey) {
+    // 送信ボタン
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       sendMessage();
-    }
-  });
+    });
 
-  form.dataset.bound = "1";
+    // IME監視（日本語変換中はEnterを無効）
+    ta.addEventListener("compositionstart", () => (composing = true));
+    ta.addEventListener("compositionend", () => (composing = false));
+
+    // Enter送信（Shift+Enterは改行）
+    ta.addEventListener("keydown", (e) => {
+      if (composing || e.isComposing || e.keyCode === 229) return;
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // 入力中は自動で高さ調整
+    ta.addEventListener("input", () => {
+      ta.style.height = "auto";
+      ta.style.height = `${ta.scrollHeight}px`;
+    });
+
+    form.dataset.bound = "1";
   }
 }
 
